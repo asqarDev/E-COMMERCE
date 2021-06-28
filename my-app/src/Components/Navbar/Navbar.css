@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap');
+
+header{
+    font-family: 'Roboto Condensed', sans-serif;
+}
+header .logoh6 h6{
+    line-height: 1.5;
+    margin-top: 22px;
+    margin-left: 15px;
+    cursor: pointer;
+    font-weight: 400 !important;
+}
+header a{
+    text-decoration: none;
+    color: black;
+}
+header .fa-user{
+    border: 1px solid black;
+    border-radius: 50%;
+    padding: 3px;
+    box-sizing: border-box;
+    margin-right: 5px;
+}
+header .logoh6{
+    /* width: 70%; */
+}
+header .linkLogo{
+    text-decoration: none;
+    color: black;
+}
+
+nav ul .nav-item .nav-link{
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: 17px;
+    color: white !important;
+    letter-spacing: 0.6px;
+    border-top: 2px solid transparent;
+    transition: .3s linear;
+}
+nav ul .nav-item .nav-link:hover{
+    color: black !important;
+}
+
+nav ul li a.active, nav  ul  .nav-item  a:focus{
+    border-top: 2px solid black;
+    
+}
+nav .nav-link{
+    color: black;
+}
+.sahifa{
+    padding-right: 0 !important;
+    padding-left: 5px !important;
+}
+
+
+@media screen and (max-width: 480px) {
+    body {
+      background-color: lightgreen;
+    }
+    nav ul .nav-item .nav-link{
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        margin-left: 5px;
+        color: black !important;
+    }
+  }

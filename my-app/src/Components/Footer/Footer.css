@@ -1,0 +1,28 @@
+footer{
+    background-color: #191919;
+    color: gainsboro;
+}
+footer .row{
+
+}
+footer .mycol4 ul li{
+    list-style-type: none;
+    padding: 0;
+    border-bottom: 1px solid gray;
+    padding: 10px 0;
+}
+footer .mycol4 ul li a{
+    color: gainsboro;
+}
+footer .mycol4 ul li a:hover{
+    color: white;
+    text-decoration: underline;
+}
+footer .bottom{
+    border-bottom: 2px solid white;
+    width: 80px;
+}
+footer h6{
+    color: white;
+
+}
