@@ -1,0 +1,18 @@
+.izoh{
+    background-color: #F7F7F7;
+    width: 100%;
+    padding: 10px;
+}
+.izoh i{
+    margin-right: 7px;
+}
+.pages{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+@media only screen and (max-width: 600px) {
+    .tables{
+        margin-top: 30px;
+    }
+  }
