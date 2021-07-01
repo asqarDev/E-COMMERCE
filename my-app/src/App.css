@@ -1,0 +1,29 @@
+body {
+  position: relative;
+}
+html{
+    scroll-behavior: smooth;
+}
+.arrowTop {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+.tops {
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: white;
+  box-shadow: 0 0 20px 0 rgb(0 0 0 / 15%);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: linear 0.4s;
+}
+.tops:hover{
+    background-color: #0D6EFD;
+    color: white;
+}

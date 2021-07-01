@@ -56,13 +56,9 @@ nav .nav-link{
 
 
 @media screen and (max-width: 480px) {
-    body {
-      background-color: lightgreen;
-    }
     nav ul .nav-item .nav-link{
         padding-left: 0 !important;
         padding-right: 0 !important;
         margin-left: 5px;
-        color: black !important;
     }
   }

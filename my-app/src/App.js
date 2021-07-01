@@ -11,13 +11,13 @@ import {
   useRouteMatch,
   useParams,
 } from "react-router-dom";
-import 'antd/dist/antd.css';
+import "antd/dist/antd.css";
 import Section from "./Components/Section";
-import Maqolalar from './Components/HomPages/Maqolalar'
-import Kitoblar from './Components/HomPages/Kitoblar.js'
-import Taqdimotlar from './Components/HomPages/Taqdimotlar'
-import Loyihalar from './Components/HomPages/Loyihalar'
-import Tadbirlar from './Components/HomPages/Tadbirlar'
+import Maqolalar from "./Components/HomPages/Maqolalar";
+import Kitoblar from "./Components/HomPages/Kitoblar.js";
+import Taqdimotlar from "./Components/HomPages/Taqdimotlar";
+import Loyihalar from "./Components/HomPages/Loyihalar";
+import Tadbirlar from "./Components/HomPages/Tadbirlar";
 import Videolar from "./Components/HomPages/Videolar";
 function App() {
   return (
@@ -29,27 +29,33 @@ function App() {
             <Section />
           </Route>
           <Route path="/Maqolalar">
-            <Maqolalar/>
+            <Maqolalar />
           </Route>
           <Route path="/Kitoblar">
-              <Kitoblar/>
+            <Kitoblar />
           </Route>
           <Route path="/taqdimotlar">
-            <Taqdimotlar/>
+            <Taqdimotlar />
           </Route>
           <Route path="/loyihalar">
-              <Loyihalar/>
+            <Loyihalar />
           </Route>
           <Route path="/tadbirlar">
-            <Tadbirlar/>
+            <Tadbirlar />
           </Route>
           <Route path="/videolar">
-              <Videolar/>
+            <Videolar />
           </Route>
-          
         </Switch>
         <Footer />
       </Router>
+      <div className="arrowTop">
+        <a href='#'>
+          <div className="tops" id="2">
+            <i className="fas fa-arrow-up"></i>
+          </div>
+        </a>
+      </div>
     </>
   );
 }

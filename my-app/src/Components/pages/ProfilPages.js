@@ -4,7 +4,7 @@ export default class ProfilPages extends Component {
   render() {
     return (
       <>
-        <div class="card mycard">
+        <div class="card mycard mb-4">
           <div className="card-header">
             <img
               src="/img/profilimg.jpeg"

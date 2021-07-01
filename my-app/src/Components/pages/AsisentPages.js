@@ -17,7 +17,7 @@ export default class AsisentPages extends Component {
                 backSpeed={100}
               />{" "}
              
-              <p className=' my-2'><a>Bosh sahifa <i className='fas fa-chevron-right mx-2'></i></a> <p className='d-inline-block mx-3 myname'>Mustafoqulov Alimardon Mamatovich</p></p>
+              <p className=' my-2'><a>Bosh sahifa <i className='fas fa-chevron-right mx-2'></i></a> <p className='d-inline-block myname'>Mustafoqulov Alimardon Mamatovich</p></p>
             </div>
           </div>
         </div>

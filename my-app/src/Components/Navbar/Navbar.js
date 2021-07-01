@@ -112,7 +112,7 @@ export default class Navbar extends Component {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <a href="#" className="nav-link" aria-current="page">
+                  <a href="#footer" className="nav-link" aria-current="page">
                     Bog'lanish
                   </a>
                 </li>

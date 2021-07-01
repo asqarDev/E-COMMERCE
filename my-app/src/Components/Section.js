@@ -46,7 +46,7 @@ export default class Section extends Component {
                   </div>
                 </div>
                 <div className="col-lg-6 col-md-6">
-                  <div className="xabarlar">
+                  <div className="xabarlar"> 
                     <div>
                       <div className="div">
                         <i className="fas fa-envelope"></i>

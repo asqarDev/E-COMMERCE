@@ -26,3 +26,24 @@ footer h6{
     color: white;
 
 }
+footer .myicon{
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    margin-right: 10px;
+    padding-top: 8px;
+    background-color: #303030;
+}
+@media only screen and (max-width: 600px) {
+    
+    .contacts p{
+        font-size: 13px;
+    }
+  }
+  @media only screen and (min-width: 600px) {
+    .row-footer{
+        padding: 40px;
+        box-sizing: border-box;
+    }
+    
+  }
