@@ -1,0 +1,8 @@
+{
+    "editor.linkedEditing": true,
+    "workbench.colorCustomizations": {
+        "activityBar.background": "#57161E",
+        "titleBar.activeBackground": "#7A1E2B",
+        "titleBar.activeForeground": "#FEFBFB"
+    }
+}

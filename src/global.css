@@ -1,0 +1,48 @@
+body {
+  /*height: 5000px;
+  background-color: lightgreen;
+  background-image: url(/src/assets/images/6.jpg);
+  background-size: cover;*/
+}
+body .products-section .container .row .col-lg-3 {
+  margin-bottom: 20px;
+}
+body .products-section .container .row .col-lg-3 .card {
+  overflow: hidden;
+  border: none;
+  box-shadow: 0 4px 40px rgba(0, 0, 0, 0.15) !important;
+}
+body .products-section .container .row .col-lg-3 .card .card-img-top {
+  height: 300px !important;
+  object-fit: cover;
+  transition: linear 0.5s;
+}
+body .products-section .container .row .col-lg-3 .card .card-img-top:hover {
+  transform: scale(1.04);
+  cursor: pointer;
+}
+body .products-section .container .row .col-lg-3 .card .card-body h5, body .products-section .container .row .col-lg-3 .card .card-body p {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+body .products-section .modal-xl .my-modal .container .row .col-lg-4 .card {
+  border: none !important;
+}
+body .products-section .modal-xl .my-modal .container .row .col-lg-4 .card .card-body {
+  border: none !important;
+}
+body .products-section .modal-xl .ModalHeader {
+  text-align: center !important;
+}
+body .products-section .my-container .row .col-lg-12 .modal-content {
+  background-color: blue !important;
+}
+body .products-section .my-container .row .col-lg-12 .modal-content .modal-header .modal-title {
+  text-align: center !important;
+}
+body .products-section .my-container .row .col-lg-12 .modal-content .modal-footer {
+  display: flex !important;
+  justify-content: center !important;
+}
+
+/*# sourceMappingURL=global.css.map */

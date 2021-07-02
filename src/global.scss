@@ -1,0 +1,85 @@
+body {
+  /*height: 5000px;
+  background-color: lightgreen;
+  background-image: url(/src/assets/images/6.jpg);
+  background-size: cover;*/
+
+
+  .products-section {
+    .container {
+      .row {
+        .col-lg-3 {
+          margin-bottom: 20px;
+
+          .card {
+            overflow: hidden;
+            border: none;
+            box-shadow: 0 4px 40px rgba(0, 0, 0, 0.15) !important;
+
+            .card-img-top {
+              height: 300px !important;
+              object-fit: cover;
+              transition: linear 0.5s;
+
+              &:hover {
+                transform: scale(1.04);
+                cursor: pointer;
+
+              }
+            }
+            .card-body {
+              h5,p {
+                margin: 0 !important;
+                padding: 0 !important;
+              }
+            }
+          }
+        }
+      }
+    }
+    .modal-xl {
+      .my-modal {
+        .container {
+          .row {
+            .col-lg-4 {
+              .card {
+                border: none !important;
+
+                .card-body {
+                  border: none !important;
+                }
+              }
+            }
+          }
+        }
+      }
+      .ModalHeader{
+        text-align: center !important;
+      }
+    }
+
+    .my-container{
+      .row {
+        .col-lg-12 {
+          .modal-content {
+            background-color: blue !important;
+            .modal-header{
+              .modal-title{
+                text-align: center !important;
+
+              }
+            }
+            .modal-body{
+
+            }
+            .modal-footer {
+                display: flex !important;
+              justify-content: center !important;
+            }
+          }
+        }
+      }
+    }
+  }
+
+}
