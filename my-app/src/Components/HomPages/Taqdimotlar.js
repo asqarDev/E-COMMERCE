@@ -5,6 +5,7 @@ import { Table } from "react-bootstrap";
 import './index.css'
 export default class Taqdimotlar extends Component {
   render() {
+    const [posts,loading] = this.props
     return (
       <>
         <AsisentPages />
@@ -31,30 +32,7 @@ export default class Taqdimotlar extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>
-                      Mexatronika asoslari, 2021 <br />
-                     
-                    </td>
-                    <td>
-                      <a href="#">Ochish</a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>
-                    Mexatronika asoslari, 2021
-                    </td>
-                    <td>Thornton</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>
-                    Mexatronika asoslari, 2021
-                    </td>
-                    <td></td>
-                  </tr>
+                 {this.posts}
                 </tbody>
               </Table>
 

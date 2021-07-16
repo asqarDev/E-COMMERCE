@@ -1,9 +1,60 @@
 import React, { Component } from "react";
 import ProfilPages from "../pages/ProfilPages";
 import AsisentPages from "../pages/AsisentPages";
-import {Table} from 'react-bootstrap'
-import './index.css'
+import { Table } from "react-bootstrap";
+import "./index.css";
+import ReactPaginate from "react-paginate";
+import axios from "axios";
 export default class Kitoblar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      offset: 0,
+      data: [],
+      perPage: 10,
+      currentPage: 0,
+    };
+    this.handlePageClick = this.handlePageClick.bind(this);
+  }
+  receivedData() {
+    axios.get(`https://jsonplaceholder.typicode.com/todos`).then((res) => {
+      const data = res.data;
+      const slice = data.slice(
+        this.state.offset,
+        this.state.offset + this.state.perPage
+      );
+      const postData = slice.map((item) => (
+        <React.Fragment>
+          <tr>
+            <td>{item.id}</td>
+            <td>{item.title}</td>
+            <td>{item.completed}</td>
+          </tr>
+        </React.Fragment>
+      ));
+      this.setState({
+        pageCount: Math.ceil(data.length / this.state.perPage),
+        postData,
+      });
+    });
+  }
+  handlePageClick = (e) => {
+    const selectedPage = e.selected;
+    const offset = selectedPage * this.state.perPage;
+    this.setState(
+      {
+        currentPage: selectedPage,
+        offset: offset,
+      },
+      () => {
+        this.receivedData();
+      }
+    );
+  };
+
+  componentDidMount() {
+    this.receivedData();
+  }
   render() {
     return (
       <>
@@ -14,86 +65,41 @@ export default class Kitoblar extends Component {
               <ProfilPages />
             </div>
             <div className="col-lg-9">
-              <p className="izoh"> <i className='fas fa-book'></i> Kitoblar ro'yxati</p>
+              <p className="izoh">
+                {" "}
+                <i className="fas fa-book"></i> Kitoblar ro'yxati
+              </p>
               <Table
                 striped
                 bordered
                 hover
-                size="xl"
+                size="lg"
                 text="center"
                 className="tables"
               >
                 <thead>
                   <tr>
-                    <th>Muqovasi</th>
+                    <th className="">Muqovasi</th>
                     <th>TO‘LIQ NOMI</th>
                     <th>HAVOLA</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td></td>
-                    <td>
-                      APPLICATION OF THE ELECTROMAGNETIC VIBRATION DRIVE IN
-                      INTENSIVE VIBROTECHNOLOGIES OF AGRICULTURAL AND WATER
-                      SECTORS, 2021 <br />
-                      <span className="badge bg-primary p-2">WoS</span>
-                    </td>
-                    <td><a href="#">Ochish</a></td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                    <td>
-                      Шамол электр қурилмаларининг парраклари ва баландлиги
-                      ўлчамларининг энергия самарадорлигига кўрсатадиган
-                      таъсири, 2021
-                    </td>
-                    <td>Thornton</td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                    <td>
-                      Physical and electronic model of studying infrared
-                      radiator for drying wending insulation, 2021 Scopus
-                    </td>
-                    <td></td>
-                  </tr>
-                </tbody>
+                <tbody>{this.state.postData}</tbody>
               </Table>
-
-              <div className="pages">
-                <nav
-                  aria-label="Page navigation example"
-                  className="text-center mt-4"
-                >
-                  <ul class="pagination">
-                    <li class="page-item">
-                      <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                      </a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">
-                        1
-                      </a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">
-                        2
-                      </a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">
-                        3
-                      </a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                      </a>
-                    </li>
-                  </ul>
-                </nav>
+              <div className="d-flex">
+                <ReactPaginate
+                  previousLabel={"prev"}
+                  nextLabel={"next"}
+                  breakLabel={"..."}
+                  breakClassName={"break-me"}
+                  pageCount={this.state.pageCount}
+                  marginPagesDisplayed={2}
+                  pageRangeDisplayed={5}
+                  onPageChange={this.handlePageClick}
+                  containerClassName={"pagination"}
+                  subContainerClassName={"pages pagination"}
+                  activeClassName={"active"}
+                />
               </div>
             </div>
           </div>

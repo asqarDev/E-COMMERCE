@@ -3,8 +3,21 @@ import "./Navbar.css";
 import "../../assets/FA/css/all.min.css";
 import { Link } from "react-router-dom";
 import { Select } from "antd";
-export default class Navbar extends Component {
+// import {uzLanguge} from '../../Redux/Actions/uzLanguge';
+// import {engLaguege} from '../../Redux/Actions/engLaguege';
+// import { connect } from 'react-redux';
+class Navbar extends Component {
   render() {
+
+    // const {uzLang}= this.props;
+    // const changeSelect=(value)=>{
+    //     if(value=="uz"){
+    //         this.props.uzLanguge()
+    //     } else if(value=="en"){
+    //         this.props.engLaguege()
+    //     }
+    // }
+
     const { Option } = Select;
     function handleChange(value) {
       console.log(`selected ${value}`);
@@ -22,8 +35,7 @@ export default class Navbar extends Component {
                     </div>
                     <div className="logoh6">
                       <h6>
-                        TOSHKENT IRRIGATSIYA VA QISHLOQ XO'JALIGINI
-                        MEXANIZATSIYALASH MUHANDISLARI INSTITUTI
+                        {/* {uzLang?"TOSHKENT IRRIGATSIYA VA QISHLOQ XO\'JALIGINIMEXANIZATSIYALASH MUHANDISLARI INSTITUTI":"TASHKENT IRRIGATION AND AGRICULTUREINSTITUTE OF MECHANIZATION ENGINEERS"} */}
                       </h6>
                     </div>
                   </div>
@@ -44,7 +56,7 @@ export default class Navbar extends Component {
           <ul className='navbar-nav'>
           <li className="nav-item">
                   <Link
-                    to="/boshsahifa"
+                    to="/"
                     className="nav-link active sahifa"
                     aria-current="page"
                   >
@@ -124,9 +136,9 @@ export default class Navbar extends Component {
                   style={{ width: 120 }}
                   onChange={handleChange}
                 >
-                  <Option value="Uzb">Uzb</Option>
-                  <Option value="Eng">Eng</Option>
-                  <Option value="Rus">Rus</Option>
+                  <Option value="Uzb" >Uzb</Option>
+                  <Option value="Eng" >Eng</Option>
+                  
                 </Select>
               </div>
             </div>
@@ -136,3 +148,16 @@ export default class Navbar extends Component {
     );
   }
 }
+
+// const mapStateToProps=(state)=>{
+//   return{
+//       uzLang:state.changeLang.uzLang,
+//   }
+// }
+
+export default Navbar
+
+
+// export default connect(mapStateToProps,{engLaguege,uzLanguge})(
+//   Navbar
+// )

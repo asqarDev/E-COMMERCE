@@ -33,14 +33,15 @@ export default class Section extends Component {
               <div className="row row-2 my-5">
                 <div className="col-lg-6 col-md-6">
                   <div className="card ">
-                    <p>
+                    <p className="p-2">
                       <i className="fas fa-user"></i> Foydalanuvchi hisoblari
                     </p>
+
                   </div>
                 </div>
                 <div className="col-lg-6 col-md-6">
                   <div className="card">
-                    <p>
+                    <p className='p-2'>
                       <i className="fas fa-signal"></i> Iqtiboslash indekslari
                     </p>
                   </div>
