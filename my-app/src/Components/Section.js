@@ -54,7 +54,7 @@ export default class Section extends Component {
                       </div>
                     </div>
                     <div className='mx-3'>
-                      <a href="#" className="gmail">
+                      <a href="mailto:a.mustafaqulov@tiiame.uz" className="gmail">
                         a.mustafaqulov@tiiame.uz
                       </a>
                     </div>

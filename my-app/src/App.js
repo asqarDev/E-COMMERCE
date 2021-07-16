@@ -46,7 +46,18 @@ function App() {
           <Route exact path="/" render={() => <Section />} />
           <Route path="/Maqolalar" render={() => <Maqolalar />} />
           <Route path="/Kitoblar" render={() => <Kitoblar />} />
-          <Route path="/taqdimotlar" render={() => <Taqdimotlar posts={currentPost} loading={loading} />} />
+          <Route
+            path="/taqdimotlar"
+            render={() => (
+              <Taqdimotlar
+                posts={currentPost}
+                loading={loading}
+                paginate={paginate}
+                postsPerPage={postsPerPage}
+                
+              />
+            )}
+          />
           <Route path="/loyihalar" render={() => <Loyihalar />} />
           <Route path="/tadbirlar" render={() => <Tadbirlar />} />
           <Route path="/videolar" render={() => <Videolar />} />
@@ -54,6 +65,7 @@ function App() {
         {/* <Paginations /> */}
         {/* <Hompage posts={currentPost} loading={loading} />
         <Paginations
+          breakLabel={"..."}
           postsPerPage={postsPerPage}
           totalPosts={posts.length}
           paginate={paginate}
