@@ -9,8 +9,8 @@ const Taqdimotlar = ({
   loading,
   postsPerPage,
   paginate,
+  totalPosts,
 }) => {
-  // [postsPerPage, paginate] = this.props;
   if (loading) {
     return (
       <div className="container d-flex py-5 justify-content-center  animators">
@@ -18,8 +18,6 @@ const Taqdimotlar = ({
       </div>
     );
   }
-  // const [posts, loading] = this.props;
-
   return (
     <>
       <AsisentPages />

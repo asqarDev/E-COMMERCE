@@ -14,8 +14,6 @@ import Tadbirlar from "./Components/HomPages/Tadbirlar";
 import Videolar from "./Components/HomPages/Videolar";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Hompage from "./Components/HomPages/Hompage";
-import { Paginations } from "./Components/Paginations/Paginations";
 function App() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -24,10 +22,11 @@ function App() {
   useEffect(() => {
     const fetchPosts = async () => {
       setLoading(true);
-      const res = await axios.get("https://jsonplaceholder.typicode.com/todos");
+      const res = await axios.get(
+        ""
+      );
       setPosts(res.data);
       setLoading(false);
-      console.log(res.data);
     };
     fetchPosts();
   }, []);
@@ -35,9 +34,7 @@ function App() {
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPost = posts.slice(indexOfFirstPost, indexOfLastPost);
-  console.log(currentPost);
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
   return (
     <>
       <Router>
@@ -54,7 +51,6 @@ function App() {
                 loading={loading}
                 paginate={paginate}
                 postsPerPage={postsPerPage}
-                
               />
             )}
           />
@@ -62,14 +58,6 @@ function App() {
           <Route path="/tadbirlar" render={() => <Tadbirlar />} />
           <Route path="/videolar" render={() => <Videolar />} />
         </Switch>
-        {/* <Paginations /> */}
-        {/* <Hompage posts={currentPost} loading={loading} />
-        <Paginations
-          breakLabel={"..."}
-          postsPerPage={postsPerPage}
-          totalPosts={posts.length}
-          paginate={paginate}
-        /> */}
         <Footer />
       </Router>
       <div className="arrowTop">

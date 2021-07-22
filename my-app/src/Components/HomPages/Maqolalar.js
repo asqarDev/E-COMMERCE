@@ -19,7 +19,7 @@ export default class Maqolalar extends Component {
             maqola: res.data,
           });
         }
-        console.log(res);
+        // console.log(res);
       })
       .catch((res) => {
         alert("Servirda xatolik bor");

@@ -34,10 +34,30 @@ footer .myicon{
     padding-top: 8px;
     background-color: #303030;
 }
+footer .section-footer{
+    background-color: #111111;
+}
+.footericons{
+    display: flex;
+    justify-content: flex-end;
+}
+.footericons a{
+    color: white;
+    margin-right: 20px;
+    font-size: 20px;
+}
 @media only screen and (max-width: 600px) {
     
     .contacts p{
         font-size: 13px;
+    }
+    .row-footer{
+        display: flex !important;
+        justify-content: center !important;
+    }
+    .footericons{
+        display: flex !important;
+        justify-content: center !important;
     }
   }
   @media only screen and (min-width: 600px) {
@@ -45,5 +65,6 @@ footer .myicon{
         padding: 40px;
         box-sizing: border-box;
     }
+    
     
   }

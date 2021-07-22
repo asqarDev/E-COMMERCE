@@ -1,11 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import "./assets/FA/css/all.min.css"
+import i18next from "i18next";
+import React, { Suspense } from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import "./assets/FA/css/all.min.css";
+import './Redux/i18next'
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Suspense fallback={<div>Loading...</div>}>
+      <App />
+    </Suspense>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
-

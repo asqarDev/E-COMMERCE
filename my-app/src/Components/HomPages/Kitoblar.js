@@ -35,7 +35,7 @@ export default class Kitoblar extends Component {
       this.setState({
         pageCount: Math.ceil(data.length / this.state.perPage),
         postData,
-      });
+      })
     });
   }
   handlePageClick = (e) => {
@@ -86,15 +86,15 @@ export default class Kitoblar extends Component {
                 </thead>
                 <tbody>{this.state.postData}</tbody>
               </Table>
-              <div className="d-flex">
+              <div className="d-flex w-100% paginates">
                 <ReactPaginate
                   previousLabel={"prev"}
                   nextLabel={"next"}
                   breakLabel={"..."}
                   breakClassName={"break-me"}
                   pageCount={this.state.pageCount}
-                  marginPagesDisplayed={2}
-                  pageRangeDisplayed={5}
+                  marginPagesDisplayed={1}
+                  pageRangeDisplayed={3}
                   onPageChange={this.handlePageClick}
                   containerClassName={"pagination"}
                   subContainerClassName={"pages pagination"}
