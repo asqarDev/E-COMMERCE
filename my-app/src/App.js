@@ -14,27 +14,19 @@ import Tadbirlar from "./Components/HomPages/Tadbirlar";
 import Videolar from "./Components/HomPages/Videolar";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { host } from "./Components/Server/host";
 function App() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(10);
   useEffect(() => {
     const fetchPosts = async () => {
       setLoading(true);
-      const res = await axios.get(
-        ""
-      );
+      const res = await axios.get(`${host}`);
       setPosts(res.data);
       setLoading(false);
     };
     fetchPosts();
   }, []);
-  // Get current posts
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPost = posts.slice(indexOfFirstPost, indexOfLastPost);
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
   return (
     <>
       <Router>
@@ -43,17 +35,7 @@ function App() {
           <Route exact path="/" render={() => <Section />} />
           <Route path="/Maqolalar" render={() => <Maqolalar />} />
           <Route path="/Kitoblar" render={() => <Kitoblar />} />
-          <Route
-            path="/taqdimotlar"
-            render={() => (
-              <Taqdimotlar
-                posts={currentPost}
-                loading={loading}
-                paginate={paginate}
-                postsPerPage={postsPerPage}
-              />
-            )}
-          />
+          <Route path="/taqdimotlar" render={() => <Taqdimotlar />} />
           <Route path="/loyihalar" render={() => <Loyihalar />} />
           <Route path="/tadbirlar" render={() => <Tadbirlar />} />
           <Route path="/videolar" render={() => <Videolar />} />

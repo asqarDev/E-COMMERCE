@@ -11,6 +11,9 @@
   display: flex;
   justify-content: center;
 }
+.tables a{
+  color: black;
+}
 @media only screen and (max-width: 600px) {
   .tables {
     margin-top: 30px;
@@ -19,11 +22,7 @@
 .paginates{
   overflow: hidden;
 }
-.animators{
-  width: 100%;
-  height: 80vh;
-  align-items: center;
-}
+
 
 .pagination {
   margin: 15px auto;

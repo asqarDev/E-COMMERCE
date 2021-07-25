@@ -2,8 +2,60 @@ import React, { Component } from "react";
 import AsisentPages from "../pages/AsisentPages";
 import ProfilPages from "../pages/ProfilPages";
 import { Table } from "react-bootstrap";
-import './index.css'
+import "./index.css";
+import ReactPaginate from "react-paginate";
+import { host } from "../Server/host";
+import axios from "axios";
 export default class Loyihalar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      offset: 0,
+      data: [],
+      perPage: 10,
+      currentPage: 0,
+    };
+    this.handlePageClick = this.handlePageClick.bind(this);
+  }
+  receivedData() {
+    axios.get(`${host}/projects/`).then((res) => {
+      const data = res.data.results;
+      const slice = data.slice(
+        this.state.offset,
+        this.state.offset + this.state.perPage
+      );
+      const postData = slice.map((item) => (
+        <React.Fragment>
+          <tr>
+            <td>{item.author}</td>
+            <td>{item.name}</td>
+            <td>{item.slug}</td>
+          </tr>
+        </React.Fragment>
+      ));
+      this.setState({
+        pageCount: Math.ceil(data.length / this.state.perPage),
+        postData,
+      });
+    });
+  }
+  handlePageClick = (e) => {
+    const selectedPage = e.selected;
+    const offset = selectedPage * this.state.perPage;
+    this.setState(
+      {
+        currentPage: selectedPage,
+        offset: offset,
+      },
+      () => {
+        this.receivedData();
+      }
+    );
+  };
+
+  componentDidMount() {
+    this.receivedData();
+  }
   render() {
     return (
       <>
@@ -14,7 +66,10 @@ export default class Loyihalar extends Component {
               <ProfilPages />
             </div>
             <div className="col-lg-9">
-              <p className="izoh"> <i className='fas fa-file-archive'></i>  Loyihalar ro‘yxati</p>
+              <p className="izoh">
+                {" "}
+                <i className="fas fa-file-archive"></i> Loyihalar ro‘yxati
+              </p>
               <Table
                 striped
                 bordered
@@ -31,61 +86,24 @@ export default class Loyihalar extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>
-                      Mexatronika asoslari, 2021 <br />
-                    </td>
-                    <td>
-                      <a href="#">Ochish</a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>Mexatronika asoslari, 2021</td>
-                    <td>Thornton</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>Mexatronika asoslari, 2021</td>
-                    <td></td>
-                  </tr>
+                {this.state.postData}
                 </tbody>
               </Table>
 
-              <div className="pages">
-                <nav
-                  aria-label="Page navigation example"
-                  className="text-center mt-4"
-                >
-                  <ul class="pagination">
-                    <li class="page-item">
-                      <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                      </a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">
-                        1
-                      </a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">
-                        2
-                      </a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">
-                        3
-                      </a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                      </a>
-                    </li>
-                  </ul>
-                </nav>
+              <div className="d-flex w-100% paginates">
+                <ReactPaginate
+                  previousLabel={"prev"}
+                  nextLabel={"next"}
+                  breakLabel={"..."}
+                  breakClassName={"break-me"}
+                  pageCount={this.state.pageCount}
+                  marginPagesDisplayed={1}
+                  pageRangeDisplayed={3}
+                  onPageChange={this.handlePageClick}
+                  containerClassName={"pagination"}
+                  subContainerClassName={"pages pagination"}
+                  activeClassName={"active"}
+                />
               </div>
             </div>
           </div>

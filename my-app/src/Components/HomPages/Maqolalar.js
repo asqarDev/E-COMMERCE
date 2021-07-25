@@ -4,31 +4,59 @@ import ProfilPages from "../pages/ProfilPages";
 import { Table } from "react-bootstrap";
 import axios from "axios";
 import "./index.css";
+import { host } from "../Server/host";
+import ReactPaginate from "react-paginate";
 export default class Maqolalar extends Component {
-  state = {
-    maqola: [],
-  };
-  getMaqola = () => {
-    axios({
-      url: "https://jsonplaceholder.typicode.com/posts",
-      method: "get",
-    })
-      .then((res) => {
-        if (res && Array.isArray(res.data)) {
-          this.setState({
-            maqola: res.data,
-          });
-        }
-        // console.log(res);
-      })
-      .catch((res) => {
-        alert("Servirda xatolik bor");
-        console.log(res);
-      });
-  };
-  componentDidMount() {
-    this.getMaqola();
+  constructor(props) {
+    super(props);
+    this.state = {
+      offset: 0,
+      data: [],
+      perPage: 10,
+      currentPage: 0,
+    };
+    this.handlePageClick = this.handlePageClick.bind(this);
   }
+  receivedData() {
+    axios.get(`${host}/articles/`).then((res) => {
+      const data = res.data.results;
+      const slice = data.slice(
+        this.state.offset,
+        this.state.offset + this.state.perPage
+      );
+      const postData = slice.map((item) => (
+        <React.Fragment>
+          <tr className='tables'>
+            <td>{item.count}</td>
+            <td><a download="filename" href={item.file}>{item.name}</a></td>
+            <td><a href={item.link}>ochish</a></td>
+          </tr>
+        </React.Fragment>
+      ));
+      this.setState({
+        pageCount: Math.ceil(data.length / this.state.perPage),
+        postData,
+      });
+    });
+  }
+  handlePageClick = (e) => {
+    const selectedPage = e.selected;
+    const offset = selectedPage * this.state.perPage;
+    this.setState(
+      {
+        currentPage: selectedPage,
+        offset: offset,
+      },
+      () => {
+        this.receivedData();
+      }
+    );
+  };
+
+  componentDidMount() {
+    this.receivedData();
+  }
+
   render() {
     const { maqola } = this.state;
     return (
@@ -59,52 +87,22 @@ export default class Maqolalar extends Component {
                     <th>HAVOLA</th>
                   </tr>
                 </thead>
-                <tbody>
-                  {Array.isArray(maqola)
-                    ? maqola.map((item) => (
-                        <tr>
-                          <td>{item.id}</td>
-                          <td>{item.title}</td>
-                          <td>{item.userId}</td>
-                        </tr>
-                      ))
-                    : ""}
-                </tbody>
+                <tbody>{this.state.postData}</tbody>
               </Table>
-
-              <div className="pages">
-                <nav
-                  aria-label="Page navigation example"
-                  className="text-center mt-4"
-                >
-                  <ul class="pagination">
-                    <li class="page-item">
-                      <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                      </a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">
-                        1
-                      </a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">
-                        2
-                      </a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">
-                        3
-                      </a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                      </a>
-                    </li>
-                  </ul>
-                </nav>
+              <div className="d-flex w-100% paginates">
+                <ReactPaginate
+                  previousLabel={"prev"}
+                  nextLabel={"next"}
+                  breakLabel={"..."}
+                  breakClassName={"break-me"}
+                  pageCount={this.state.pageCount}
+                  marginPagesDisplayed={1}
+                  pageRangeDisplayed={3}
+                  onPageChange={this.handlePageClick}
+                  containerClassName={"pagination"}
+                  subContainerClassName={"pages pagination"}
+                  activeClassName={"active"}
+                />
               </div>
             </div>
           </div>

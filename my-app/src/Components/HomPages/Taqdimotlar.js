@@ -1,23 +1,62 @@
 import React, { Component } from "react";
 import AsisentPages from "../pages/AsisentPages";
 import ProfilPages from "../pages/ProfilPages";
-import { Table, Spinner } from "react-bootstrap";
+import { Table } from "react-bootstrap";
 import "./index.css";
-import { Paginations } from "../Paginations/Paginations";
-const Taqdimotlar = ({
-  posts,
-  loading,
-  postsPerPage,
-  paginate,
-  totalPosts,
-}) => {
-  if (loading) {
-    return (
-      <div className="container d-flex py-5 justify-content-center  animators">
-        <Spinner animation="grow" variant="info" />
-      </div>
-    );
+import axios from "axios";
+import { host } from "../Server/host";
+import ReactPaginate from "react-paginate";
+export default class Taqdimotlar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      offset: 0,
+      data: [],
+      perPage: 10,
+      currentPage: 0,
+    };
+    this.handlePageClick = this.handlePageClick.bind(this);
   }
+  receivedData() {
+    axios.get(`${host}/presentations/`).then((res) => {
+      const data = res.data.results;
+      const slice = data.slice(
+        this.state.offset,
+        this.state.offset + this.state.perPage
+      );
+      const postData = slice.map((item) => (
+        <React.Fragment>
+          <tr>
+            <td>{item.author}</td>
+            <td>{item.name}</td>
+            <td>{item.slug}</td>
+          </tr>
+        </React.Fragment>
+      ));
+      this.setState({
+        pageCount: Math.ceil(data.length / this.state.perPage),
+        postData,
+      })
+    });
+  }
+  handlePageClick = (e) => {
+    const selectedPage = e.selected;
+    const offset = selectedPage * this.state.perPage;
+    this.setState(
+      {
+        currentPage: selectedPage,
+        offset: offset,
+      },
+      () => {
+        this.receivedData();
+      }
+    );
+  };
+
+  componentDidMount() {
+    this.receivedData();
+  }
+  render(){
   return (
     <>
       <AsisentPages />
@@ -47,25 +86,28 @@ const Taqdimotlar = ({
                 </tr>
               </thead>
               <tbody>
-                {posts.map((post) => (
-                  <tr>
-                    <td key={post.id}>{post.id}</td>
-                    <td>{post.title}</td>
-                    <td>{post.userId}</td>
-                  </tr>
-                ))}
+              {this.state.postData}
               </tbody>
             </Table>
-
-            <Paginations
-              postsPerPage={postsPerPage}
-              totalPosts={posts.length}
-              paginate={paginate}
-            />
+            <div className="d-flex w-100% paginates">
+                <ReactPaginate
+                  previousLabel={"prev"}
+                  nextLabel={"next"}
+                  breakLabel={"..."}
+                  breakClassName={"break-me"}
+                  pageCount={this.state.pageCount}
+                  marginPagesDisplayed={1}
+                  pageRangeDisplayed={3}
+                  onPageChange={this.handlePageClick}
+                  containerClassName={"pagination"}
+                  subContainerClassName={"pages pagination"}
+                  activeClassName={"active"}
+                />
+              </div>
           </div>
         </div>
       </div>
     </>
   );
+}
 };
-export default Taqdimotlar;

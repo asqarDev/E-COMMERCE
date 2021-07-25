@@ -5,75 +5,30 @@ import ProfilPages from "./pages/ProfilPages";
 import "./section.css";
 import { host } from "./Server/host";
 export default class Section extends Component {
+  state = {
+    userdata: [],
+    profiledata: [],
+  };
   getSection = () => {
     axios({
       url: `${host}/me/`,
       method: "GET",
     })
       .then((res) => {
-        <div>
-          <div className="card p-3 malumot">
-                <h3>{res.data.user.first_name}</h3>
-                <p>
-                  <b>Fakultet: </b> Qishloq va suv xo‘jaligi energiya ta’minoti
-                </p>
-                <p>
-                  <b>Kafedra: </b> Elektrotexnika va mexatronika
-                </p>
-                <p>
-                  <b>Ilmiy daraja va unvon: </b> Assistent
-                </p>
-                <p>
-                  <b>E-pochta: </b> a.mustafaqulov@tiiame.uz
-                </p>
-                <hr />
-                <h5>Qo‘shimcha ma'lumotlar</h5>
-              </div>
-              <div className="row row-2 my-5">
-                <div className="col-lg-6 col-md-6">
-                  <div className="card ">
-                    <p className="p-2">
-                      <i className="fas fa-user"></i> Foydalanuvchi hisoblari
-                    </p>
-                  </div>
-                </div>
-                <div className="col-lg-6 col-md-6">
-                  <div className="card">
-                    <p className="p-2">
-                      <i className="fas fa-signal"></i> Iqtiboslash indekslari
-                    </p>
-                  </div>
-                </div>
-                <div className="col-lg-6 col-md-6">
-                  <div className="xabarlar">
-                    <div>
-                      <div className="div">
-                        <i className="fas fa-envelope"></i>
-                      </div>
-                    </div>
-                    <div className="mx-3">
-                      <a
-                        href="mailto:a.mustafaqulov@tiiame.uz"
-                        className="gmail"
-                      >
-                        a.mustafaqulov@tiiame.uz
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-        </div>
-        console.log(res.data)
+        this.setState({
+          userdata: res.data,
+          profiledata: res.data.user,
+        });
       })
       .catch((res) => {
-        console.log(res)
+        alert("Servirda Xatolik bor")
       });
   };
-
   componentDidMount() {
     this.getSection();
   }
   render() {
+    const { userdata, profiledata } = this.state;
     return (
       <>
         <AsisentPages />
@@ -83,7 +38,67 @@ export default class Section extends Component {
               <ProfilPages />
             </div>
             <div className="col-lg-9">
-              
+              <div>
+                <div className="card p-4 malumot">
+                  {
+                    <div>
+                      <h3>
+                        {profiledata.last_name} {profiledata.first_name}
+                      </h3>
+                      <p>
+                        <b>Fakultet: </b>
+                        {userdata.faculty}
+                      </p>
+
+                      <p>
+                        <b>Kafedra: </b> {userdata.cafedra}
+                      </p>
+                      <p>
+                        <b>Ilmiy daraja va unvon: </b> {userdata.level}
+                      </p>
+                      <p>
+                        <b>E-pochta: </b> {profiledata.email}
+                      </p>
+                      <hr />
+                      <h5 className='py-3'>Qo‘shimcha ma'lumotlar</h5>
+                    </div>
+                  }
+                </div>
+
+                <div className="row row-2 my-5">
+                  <div className="col-lg-6 col-md-6">
+                    <div className="card ">
+                      <p className="p-2">
+                        <i className="fas fa-user"></i> Foydalanuvchi hisoblari
+                      </p>
+                    </div>
+                  </div>
+                  <div className="col-lg-6 col-md-6">
+                    <div className="card">
+                      <p className="p-2">
+                        <i className="fas fa-signal"></i> Iqtiboslash indekslari
+                      </p>
+                    </div>
+                  </div>
+                  <div className="col-lg-6 col-md-6">
+                    <div className="xabarlar">
+                      <div>
+                        <div className="div">
+                          <i className="fas fa-envelope"></i>
+                        </div>
+                      </div>
+                      <div className="mx-3">
+                        <a
+                          href="mailto:a.mustafaqulov@tiiame.uz"
+                          className="gmail"
+                        >
+                         {profiledata.email}
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

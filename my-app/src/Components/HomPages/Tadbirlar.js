@@ -3,7 +3,60 @@ import AsisentPages from "../pages/AsisentPages";
 import ProfilPages from "../pages/ProfilPages";
 import { Table } from "react-bootstrap";
 import "./index.css";
+import { host } from "../Server/host";
+import axios from "axios";
+import ReactPaginate from "react-paginate";
 export default class Tadbirlar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      offset: 0,
+      data: [],
+      perPage: 10,
+      currentPage: 0,
+    };
+    this.handlePageClick = this.handlePageClick.bind(this);
+  }
+  receivedData() {
+    axios.get(`${host}/events/`).then((res) => {
+      const data = res.data.results;
+      const slice = data.slice(
+        this.state.offset,
+        this.state.offset + this.state.perPage
+      );
+      const postData = slice.map((item) => (
+        <React.Fragment>
+          <tr>
+            <td>{item.author}</td>
+            <td>{item.name}</td>
+            <td>{item.slug}</td>
+          </tr>
+        </React.Fragment>
+      ));
+      this.setState({
+        pageCount: Math.ceil(data.length / this.state.perPage),
+        postData,
+      });
+    });
+  }
+  handlePageClick = (e) => {
+    const selectedPage = e.selected;
+    const offset = selectedPage * this.state.perPage;
+    this.setState(
+      {
+        currentPage: selectedPage,
+        offset: offset,
+      },
+      () => {
+        this.receivedData();
+      }
+    );
+  };
+
+  componentDidMount() {
+    this.receivedData();
+  }
+
   render() {
     return (
       <>
@@ -14,7 +67,10 @@ export default class Tadbirlar extends Component {
               <ProfilPages />
             </div>
             <div className="col-lg-9">
-              <p className="izoh"> <i className='fas fa-calendar-alt'></i> Tadbirlar ro‘yxati</p>
+              <p className="izoh">
+                {" "}
+                <i className="fas fa-calendar-alt"></i> Tadbirlar ro‘yxati
+              </p>
               <Table
                 striped
                 bordered
@@ -31,77 +87,23 @@ export default class Tadbirlar extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>
-                      Mexatronika asoslari, 2021 <br />
-                    </td>
-                    <td>
-                      <a href="#">Ochish</a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>Mexatronika asoslari, 2021</td>
-                    <td>Thornton</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>Mexatronika asoslari, 2021</td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td>4</td>
-                    <td>
-                      Yurt qismatini o‘z qismati deb bilgan adib, , 09-04-2021 -
-                      09-04-2021
-                    </td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td>5</td>
-                    <td>
-                      TIQXMMI talabalarining toshkent qishloq xo‘jaligi
-                      texnikasi zavodiga tashrifi, , 15-03-2021 - 15-03-2021
-                    </td>
-                    <td><a href='#'>Ochish</a></td>
-                  </tr>
+                  {this.state.postData}
                 </tbody>
               </Table>
-
-              <div className="pages">
-                <nav
-                  aria-label="Page navigation example"
-                  className="text-center mt-4"
-                >
-                  <ul class="pagination">
-                    <li class="page-item">
-                      <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                      </a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">
-                        1
-                      </a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">
-                        2
-                      </a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">
-                        3
-                      </a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                      </a>
-                    </li>
-                  </ul>
-                </nav>
+              <div className="d-flex w-100% paginates">
+                <ReactPaginate
+                  previousLabel={"prev"}
+                  nextLabel={"next"}
+                  breakLabel={"..."}
+                  breakClassName={"break-me"}
+                  pageCount={this.state.pageCount}
+                  marginPagesDisplayed={1}
+                  pageRangeDisplayed={3}
+                  onPageChange={this.handlePageClick}
+                  containerClassName={"pagination"}
+                  subContainerClassName={"pages pagination"}
+                  activeClassName={"active"}
+                />
               </div>
             </div>
           </div>

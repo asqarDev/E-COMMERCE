@@ -5,6 +5,7 @@ import { Table } from "react-bootstrap";
 import "./index.css";
 import ReactPaginate from "react-paginate";
 import axios from "axios";
+import { host } from "../Server/host";
 export default class Kitoblar extends Component {
   constructor(props) {
     super(props);
@@ -17,8 +18,8 @@ export default class Kitoblar extends Component {
     this.handlePageClick = this.handlePageClick.bind(this);
   }
   receivedData() {
-    axios.get(`https://jsonplaceholder.typicode.com/todos`).then((res) => {
-      const data = res.data;
+    axios.get(`${host}/books/`).then((res) => {
+      const data = res.data.results;
       const slice = data.slice(
         this.state.offset,
         this.state.offset + this.state.perPage
@@ -26,9 +27,9 @@ export default class Kitoblar extends Component {
       const postData = slice.map((item) => (
         <React.Fragment>
           <tr>
-            <td>{item.id}</td>
-            <td>{item.title}</td>
-            <td>{item.completed}</td>
+            <td>{item.author}</td>
+            <td><a href={item.file} download>{item.name}</a></td>
+            <td><a href={item.link}>ochish</a></td>
           </tr>
         </React.Fragment>
       ));
@@ -79,7 +80,7 @@ export default class Kitoblar extends Component {
               >
                 <thead>
                   <tr>
-                    <th className="">Muqovasi</th>
+                    <th className="">№</th>
                     <th>TO‘LIQ NOMI</th>
                     <th>HAVOLA</th>
                   </tr>
