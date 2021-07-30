@@ -1,19 +1,15 @@
-import axios from "axios";
 import React, { Component } from "react";
 import AsisentPages from "./pages/AsisentPages";
 import ProfilPages from "./pages/ProfilPages";
 import "./section.css";
-import { host } from "./Server/host";
+import { saveTuitor } from "./Server/config/admin/tuitor";
 export default class Section extends Component {
   state = {
     userdata: [],
     profiledata: [],
   };
   getSection = () => {
-    axios({
-      url: `${host}/me/`,
-      method: "GET",
-    })
+    saveTuitor()
       .then((res) => {
         this.setState({
           userdata: res.data,
@@ -21,7 +17,7 @@ export default class Section extends Component {
         });
       })
       .catch((res) => {
-        alert("Servirda Xatolik bor")
+        alert("Servirda Xatolik bor");
       });
   };
   componentDidMount() {
@@ -60,7 +56,7 @@ export default class Section extends Component {
                         <b>E-pochta: </b> {profiledata.email}
                       </p>
                       <hr />
-                      <h5 className='py-3'>Qo‘shimcha ma'lumotlar</h5>
+                      <h5 className="py-3">Qo‘shimcha ma'lumotlar</h5>
                     </div>
                   }
                 </div>
@@ -92,7 +88,7 @@ export default class Section extends Component {
                           href="mailto:a.mustafaqulov@tiiame.uz"
                           className="gmail"
                         >
-                         {profiledata.email}
+                          {profiledata.email}
                         </a>
                       </div>
                     </div>

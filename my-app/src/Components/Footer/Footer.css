@@ -46,6 +46,28 @@ footer .section-footer{
     margin-right: 20px;
     font-size: 20px;
 }
+.post{
+    color: white;
+}
+footer .myform{
+    color: white;
+    border: none;
+}
+footer .myform input{
+    background: transparent !important;
+    color: white !important;
+}
+footer .myform textarea{
+    background: transparent !important;
+    color: white !important;
+}
+footer .myform input::placeholder{
+    color: white !important;
+    background-color: transparent !important;
+}
+footer .maps{
+    color: white;
+}
 @media only screen and (max-width: 600px) {
     
     .contacts p{

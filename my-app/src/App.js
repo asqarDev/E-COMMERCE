@@ -15,6 +15,7 @@ import Videolar from "./Components/HomPages/Videolar";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { host } from "./Components/Server/host";
+import { useTranslation } from "react-i18next";
 function App() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -27,18 +28,23 @@ function App() {
     };
     fetchPosts();
   }, []);
+  const { t, i18n } = useTranslation();
+  const handleClick = (lang) => {
+    i18n.changeLanguage(lang);
+  };
+
   return (
     <>
       <Router>
-        <Navbar />
+        <Navbar handleClick={handleClick()}/>
         <Switch>
           <Route exact path="/" render={() => <Section />} />
-          <Route path="/Maqolalar" render={() => <Maqolalar />} />
-          <Route path="/Kitoblar" render={() => <Kitoblar />} />
-          <Route path="/taqdimotlar" render={() => <Taqdimotlar />} />
-          <Route path="/loyihalar" render={() => <Loyihalar />} />
-          <Route path="/tadbirlar" render={() => <Tadbirlar />} />
-          <Route path="/videolar" render={() => <Videolar />} />
+          <Route path="/Maqolalar" render={() => <Maqolalar loading={loading} />} />
+          <Route path="/Kitoblar" render={() => <Kitoblar loading={loading} />} />
+          <Route path="/taqdimotlar" render={() => <Taqdimotlar loading={loading}/>} />
+          <Route path="/loyihalar" render={() => <Loyihalar loading={loading}/>} />
+          <Route path="/tadbirlar" render={() => <Tadbirlar loading={loading}/>} />
+          <Route path="/videolar" render={() => <Videolar loading={loading}/>} />
         </Switch>
         <Footer />
       </Router>

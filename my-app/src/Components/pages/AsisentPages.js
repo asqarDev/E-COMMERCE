@@ -1,22 +1,17 @@
-import axios from "axios";
 import React, { Component } from "react";
 import Typed from "react-typed";
-import { host } from "../Server/host";
+import { saveTuitor } from "../Server/config/admin/tuitor";
 import "./Asisent.css";
 export default class AsisentPages extends Component {
   hompage = "Bosh sahifa";
+  name=['Mustafoqulov Alimardon Mamatovich']
   state = {
     userdata: [],
     profiledata: [],
     name: [],
-  };
-  name = [];
+  }
   getMalumot() {
-    axios({
-      url: `${host}/me/`,
-      method: "GET",
-    })
-      .then((res) => {
+    saveTuitor().then((res) => {
         this.setState({
           userdata: res.data,
           profiledata: res.data.user,
@@ -26,12 +21,6 @@ export default class AsisentPages extends Component {
         alert("kechirasiz xatolik uchun");
       });
   }
-  pushData = () => {
-    var nameData =
-      `${this.profiledata.last_name}` + `${this.profiledata.first_name}`;
-    this.name.push(nameData);
-    console.log(this.name);
-  };
   componentDidMount() {
     this.getMalumot();
   }

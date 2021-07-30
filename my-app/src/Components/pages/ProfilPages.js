@@ -1,17 +1,13 @@
 import React, { Component } from "react";
 import { host } from "../Server/host";
 import "./Asisent.css";
-import axios from "axios";
+import { saveTuitor } from "../Server/config/admin/tuitor";
 export default class ProfilPages extends Component {
   state = {
     userdata: [],
   };
   getMalumot() {
-    axios({
-      url: `${host}/me/`,
-      method: "GET",
-    })
-      .then((res) => {
+    saveTuitor().then((res) => {
         this.setState({
           userdata: res.data,
         });

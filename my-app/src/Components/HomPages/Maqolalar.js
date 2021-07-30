@@ -19,20 +19,41 @@ export default class Maqolalar extends Component {
   }
   receivedData() {
     axios.get(`${host}/articles/`).then((res) => {
-      const data = res.data.results;
+      const data = res.data;
       const slice = data.slice(
         this.state.offset,
         this.state.offset + this.state.perPage
       );
-      const postData = slice.map((item) => (
-        <React.Fragment>
-          <tr className='tables'>
-            <td>{item.count}</td>
-            <td><a download="filename" href={item.file}>{item.name}</a></td>
-            <td><a href={item.link}>ochish</a></td>
-          </tr>
-        </React.Fragment>
-      ));
+      const postData = slice.map((item) => {
+        return item.file != null ? (
+          <React.Fragment>
+            <tr className="tables">
+              <td>{item.count}</td>
+              <td>
+                <a download href={item.file}>
+                  {item.name}
+                </a>
+              </td>
+              <td>
+                <a> </a>
+              </td>
+            </tr>
+          </React.Fragment>
+        ) : (
+          <React.Fragment>
+            <tr className="tables">
+              <td>{item.count}</td>
+              <td>
+                <a>{item.name}</a>
+              </td>
+              <td>
+                <a href={item.link} className='links'>Ochish</a>
+              </td>
+            </tr>
+          </React.Fragment>
+        );
+      });
+
       this.setState({
         pageCount: Math.ceil(data.length / this.state.perPage),
         postData,
@@ -56,7 +77,6 @@ export default class Maqolalar extends Component {
   componentDidMount() {
     this.receivedData();
   }
-
   render() {
     const { maqola } = this.state;
     return (

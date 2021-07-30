@@ -19,20 +19,40 @@ export default class Tadbirlar extends Component {
   }
   receivedData() {
     axios.get(`${host}/events/`).then((res) => {
-      const data = res.data.results;
+      const data = res.data;
       const slice = data.slice(
         this.state.offset,
         this.state.offset + this.state.perPage
       );
-      const postData = slice.map((item) => (
-        <React.Fragment>
-          <tr>
-            <td>{item.author}</td>
-            <td>{item.name}</td>
-            <td>{item.slug}</td>
-          </tr>
-        </React.Fragment>
-      ));
+      const postData = slice.map((item) => {
+        return item.file != null ? (
+          <React.Fragment>
+            <tr className="tables">
+              <td>{item.count}</td>
+              <td>
+                <a download href={item.file}>
+                  {item.name}
+                </a>
+              </td>
+              <td>
+                <a> </a>
+              </td>
+            </tr>
+          </React.Fragment>
+        ) : (
+          <React.Fragment>
+            <tr className="tables">
+              <td>{item.count}</td>
+              <td>
+                <a>{item.name}</a>
+              </td>
+              <td>
+                <a href={item.link} className='links'>Ochish</a>
+              </td>
+            </tr>
+          </React.Fragment>
+        );
+      });
       this.setState({
         pageCount: Math.ceil(data.length / this.state.perPage),
         postData,
@@ -86,9 +106,7 @@ export default class Tadbirlar extends Component {
                     <th>HAVOLA</th>
                   </tr>
                 </thead>
-                <tbody>
-                  {this.state.postData}
-                </tbody>
+                <tbody>{this.state.postData}</tbody>
               </Table>
               <div className="d-flex w-100% paginates">
                 <ReactPaginate

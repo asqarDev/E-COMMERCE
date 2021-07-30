@@ -19,24 +19,44 @@ export default class Taqdimotlar extends Component {
   }
   receivedData() {
     axios.get(`${host}/presentations/`).then((res) => {
-      const data = res.data.results;
+      const data = res.data;
       const slice = data.slice(
         this.state.offset,
         this.state.offset + this.state.perPage
       );
-      const postData = slice.map((item) => (
-        <React.Fragment>
-          <tr>
-            <td>{item.author}</td>
-            <td>{item.name}</td>
-            <td>{item.slug}</td>
-          </tr>
-        </React.Fragment>
-      ));
+      const postData = slice.map((item) => {
+        return item.file != null ? (
+          <React.Fragment>
+            <tr className="tables">
+              <td>{item.count}</td>
+              <td>
+                <a download href={item.file}>
+                  {item.name}
+                </a>
+              </td>
+              <td>
+                <a> </a>
+              </td>
+            </tr>
+          </React.Fragment>
+        ) : (
+          <React.Fragment>
+            <tr className="tables">
+              <td>{item.count}</td>
+              <td>
+                <a>{item.name}</a>
+              </td>
+              <td>
+                <a href={item.link} className='links'>Ochish</a>
+              </td>
+            </tr>
+          </React.Fragment>
+        );
+      });
       this.setState({
         pageCount: Math.ceil(data.length / this.state.perPage),
         postData,
-      })
+      });
     });
   }
   handlePageClick = (e) => {
@@ -56,40 +76,38 @@ export default class Taqdimotlar extends Component {
   componentDidMount() {
     this.receivedData();
   }
-  render(){
-  return (
-    <>
-      <AsisentPages />
-      <div className="container">
-        <div className="row my-5">
-          <div className="col-lg-3">
-            <ProfilPages />
-          </div>
-          <div className="col-lg-9">
-            <p className="izoh">
-              {" "}
-              <i className="fas fa-file-powerpoint"></i> Taqdimotlar ro‘yxati
-            </p>
-            <Table
-              striped
-              bordered
-              hover
-              size="xl"
-              text="center"
-              className="tables mt-4"
-            >
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>TO‘LIQ NOMI</th>
-                  <th>HAVOLA</th>
-                </tr>
-              </thead>
-              <tbody>
-              {this.state.postData}
-              </tbody>
-            </Table>
-            <div className="d-flex w-100% paginates">
+  render() {
+    return (
+      <>
+        <AsisentPages />
+        <div className="container">
+          <div className="row my-5">
+            <div className="col-lg-3">
+              <ProfilPages />
+            </div>
+            <div className="col-lg-9">
+              <p className="izoh">
+                {" "}
+                <i className="fas fa-file-powerpoint"></i> Taqdimotlar ro‘yxati
+              </p>
+              <Table
+                striped
+                bordered
+                hover
+                size="xl"
+                text="center"
+                className="tables mt-4"
+              >
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>TO‘LIQ NOMI</th>
+                    <th>HAVOLA</th>
+                  </tr>
+                </thead>
+                <tbody>{this.state.postData}</tbody>
+              </Table>
+              <div className="d-flex w-100% paginates">
                 <ReactPaginate
                   previousLabel={"prev"}
                   nextLabel={"next"}
@@ -104,10 +122,10 @@ export default class Taqdimotlar extends Component {
                   activeClassName={"active"}
                 />
               </div>
+            </div>
           </div>
         </div>
-      </div>
-    </>
-  );
+      </>
+    );
+  }
 }
-};

@@ -14,6 +14,9 @@
 .tables a{
   color: black;
 }
+.links:hover{
+  color: blue;
+}
 @media only screen and (max-width: 600px) {
   .tables {
     margin-top: 30px;

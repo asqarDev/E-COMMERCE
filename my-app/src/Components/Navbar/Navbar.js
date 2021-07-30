@@ -3,29 +3,33 @@ import "./Navbar.css";
 import "../../assets/FA/css/all.min.css";
 import { Link } from "react-router-dom";
 import { Select } from "antd";
-import { useTranslation } from "react-i18next";
 
 export default function Navbar() {
-  const university =
-    "TOSHKENT IRRIGATSIYA VA QISHLOQ XO'JALIGINI MEXANIZATSIYALASH MUHANDISLARI INSTITUTI";
-    const login = "Kirish";
-    const hoompage = "Bosh sahifa";
-
-
+  const login = "Kirish";
+  const hoompage = "Bosh sahifa";
   const { Option } = Select;
-  const { t, i18n } = useTranslation();
 
   const handleChange = (value) => {
     console.log(`selected ${value}`);
   };
-  const handleClick = (lang) => {
-    i18n.changeLanguage(lang);
-  };
+  
 
   return (
+    {handleClick}=props,
     <>
       <header>
         <div className="container">
+          <nav style={{width:'100%',padding:'2rem 0',backgroundColor:'grey'}}>
+            <button onClick={()=>props.handleClick('uz')}>
+                Uzbekcha
+            </button>
+            <button onClick={()=>handleClick('ru')}>
+                Russin
+            </button>
+            <button onClick={()=>handleClick('en')}>
+                English
+            </button>
+          </nav>
           <div className="row py-2 justify-content-between">
             <div className="col-lg-5 col-md-6 col-sm-6">
               <a href="http://staff.tiiame.uz/" className="linkLogo">
@@ -34,7 +38,7 @@ export default function Navbar() {
                     <img height="70px" src="/img/logo.png" alt="logo" />
                   </div>
                   <div className="logoh6">
-                    <h6>{university}</h6>
+                    <h6>{t('Thanks.1')}</h6>
                   </div>
                 </div>
               </a>
@@ -122,14 +126,14 @@ export default function Navbar() {
                 style={{ width: 120 }}
                 onChange={handleChange}
               >
-                <Option value="Uzb" onClick={() => handleClick("uz")}>
-                  Uzb
+                <Option value="Uzbekcha" onClick={() => handleClick("uz")}>
+                  Uzbekcha
                 </Option>
-                <Option value="Eng" onClick={() => handleClick("en")}>
-                  Eng
+                <Option value="Russin" onClick={() => handleClick("ru")}>
+                  Russin
                 </Option>
-                <Option value="Rus" onClick={() => handleClick("ru")}>
-                  Rus
+                <Option value="English" onClick={() => handleClick("en")}>
+                  English
                 </Option>
               </Select>
             </div>
