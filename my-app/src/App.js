@@ -15,7 +15,6 @@ import Videolar from "./Components/HomPages/Videolar";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { host } from "./Components/Server/host";
-import { useTranslation } from "react-i18next";
 function App() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -28,15 +27,11 @@ function App() {
     };
     fetchPosts();
   }, []);
-  const { t, i18n } = useTranslation();
-  const handleClick = (lang) => {
-    i18n.changeLanguage(lang);
-  };
 
   return (
     <>
       <Router>
-        <Navbar handleClick={handleClick()}/>
+        <Navbar />
         <Switch>
           <Route exact path="/" render={() => <Section />} />
           <Route path="/Maqolalar" render={() => <Maqolalar loading={loading} />} />

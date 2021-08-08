@@ -30,12 +30,12 @@ export default class Maqolalar extends Component {
             <tr className="tables">
               <td>{item.count}</td>
               <td>
-                <a download href={item.file}>
+                <a download href={"data:"+host+item.file}>
                   {item.name}
                 </a>
               </td>
               <td>
-                <a> </a>
+                <a>  </a>
               </td>
             </tr>
           </React.Fragment>

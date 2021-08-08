@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import AsisentPages from "../pages/AsisentPages";
 import ProfilPages from "../pages/ProfilPages";
 import "./index.css";
-import { host } from "../Server/host";
+import { host, host1 } from "../Server/host";
 import axios from "axios";
 import ReactPaginate from "react-paginate";
 export default class Videolar extends Component {
@@ -27,7 +27,7 @@ export default class Videolar extends Component {
         return item.file != null ? (
           <div className="mt-5">
             <video controls width="100%">
-              <source src={`${host}` + item.file}></source>
+              <source src={`${host1}` + item.file} type="video/mp4"></source>
             </video>
           </div>
         ) : (

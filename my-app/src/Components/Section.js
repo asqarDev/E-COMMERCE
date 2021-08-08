@@ -11,6 +11,7 @@ export default class Section extends Component {
   getSection = () => {
     saveTuitor()
       .then((res) => {
+        console.log(res.data)
         this.setState({
           userdata: res.data,
           profiledata: res.data.user,
@@ -72,7 +73,13 @@ export default class Section extends Component {
                   <div className="col-lg-6 col-md-6">
                     <div className="card">
                       <p className="p-2">
-                        <i className="fas fa-signal"></i> Iqtiboslash indekslari
+                        <i className="fas fa-signal"></i>{" "}
+                        <a
+                          className="index" target='_blank'
+                          href="https://www.scopus.com/authid/detail.uri?authorId=57222124633"
+                        >
+                          h-Indeksi
+                        </a>
                       </p>
                     </div>
                   </div>

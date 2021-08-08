@@ -1,4 +1,4 @@
-import {uzLanguge} from '../Actions/uzLanguge'
+
 const initialState={
     uzLage:true
 }
@@ -8,6 +8,10 @@ export const langRedusers=(state=initialState, action)=>{
             console.log('uz')
             return{uzLage:true}
             break;
+        case 'ru':
+                console.log('ru')
+                return{uzLage:false}
+                break;
         case 'en':
             console.log('en')
             return{uzLage:false}

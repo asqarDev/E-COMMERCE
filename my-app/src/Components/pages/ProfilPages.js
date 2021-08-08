@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { host } from "../Server/host";
+import { host1 } from "../Server/host";
 import "./Asisent.css";
 import { saveTuitor } from "../Server/config/admin/tuitor";
 export default class ProfilPages extends Component {
@@ -27,7 +27,7 @@ export default class ProfilPages extends Component {
           <div className="card-header">
            
             <img
-              src={`${host}`+userdata.avatar}
+              src={`${host1}`+userdata.avatar}
               className="card-img-top w-100"
               alt="Profile images"
             />

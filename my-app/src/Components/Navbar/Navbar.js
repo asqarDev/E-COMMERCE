@@ -3,24 +3,28 @@ import "./Navbar.css";
 import "../../assets/FA/css/all.min.css";
 import { Link } from "react-router-dom";
 import { Select } from "antd";
+import { useTranslation } from "react-i18next";
 
 export default function Navbar() {
-  const login = "Kirish";
+ 
   const hoompage = "Bosh sahifa";
   const { Option } = Select;
+  const { t, i18n } = useTranslation();
 
   const handleChange = (value) => {
     console.log(`selected ${value}`);
   };
-  
+  const handleClick = (lang) => {
+    i18n.changeLanguage(lang);
+  };
 
   return (
-    {handleClick}=props,
+
     <>
       <header>
         <div className="container">
-          <nav style={{width:'100%',padding:'2rem 0',backgroundColor:'grey'}}>
-            <button onClick={()=>props.handleClick('uz')}>
+          <nav style={{width:'100%',padding:'2rem 0',backgroundColor:'grey',marginTop:'10px'}}>
+            <button onClick={()=>handleClick('uz')}>
                 Uzbekcha
             </button>
             <button onClick={()=>handleClick('ru')}>
@@ -46,7 +50,7 @@ export default function Navbar() {
             <div className="col-lg-6 col-md-6 col-sm-6 d-flex justify-content-end align-items-center">
               <div>
                 <a href="https://morning-peak-42064.herokuapp.com/admin/">
-                  <i className="fas fa-user "></i> {login}
+                  <i className="fas fa-user "></i> {t('why.1')}
                 </a>
               </div>
             </div>

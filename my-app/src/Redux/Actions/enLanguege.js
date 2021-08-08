@@ -1,4 +1,4 @@
-export const engLaguege=()=>{
+export const enLanguege=()=>{
     return{
         type:'en'
     }
