@@ -38,6 +38,7 @@ export default class Footer extends Component {
     console.log(formDataObj);
     getPosts(formDataObj)
       .then((res) => {
+      
         if (res && res.data) {
           alert("Yuborildi.");
         } else {
@@ -151,10 +152,10 @@ export default class Footer extends Component {
               <div className="col-lg-4 py-3 col-md-6 footericons">
                 <p>
                   {" "}
-                  <a href="#">
+                  <a href="http://t.me/Mustafo_Ali_7">
                     <i className="fab fa-telegram "></i>
                   </a>
-                  <a href="#">
+                  <a href="http://facebook.com/Alimardon%Mustafoqulov">
                     <i className="fab fa-facebook-f "></i>
                   </a>
                 </p>

@@ -23,7 +23,7 @@ export let saveNumber = () => {
 }
 export let getPosts = (formDataObj) => {
     let config = {
-      url: `${host}/me/contact/`,
+      url: `${host}uz/me/contact/`,
       method: "POST",
       data: formDataObj
     };
