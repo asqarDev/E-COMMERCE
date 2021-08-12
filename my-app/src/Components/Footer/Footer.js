@@ -72,11 +72,11 @@ export default class Footer extends Component {
                 </Form.Group>
                 <Form.Group controlId="phone">
                   <Form.Label>Phone</Form.Label>
-                  <Form.Control type="text" name="phone" placeholder="phone" />
+                  <Form.Control type="text" name="phone" placeholder="phone raqamni davlat kodi bilan kiriting:" />
                 </Form.Group>
                 <Form.Group controlId="message" className='mb-3'>
                   <Form.Label>Message</Form.Label>
-                  <Form.Control as="textarea" name="message" rows={3} />
+                  <Form.Control as="textarea" name="message" rows={3} placeholder='Comments'/>
                 </Form.Group>
                 <Button variant="primary" type="submit" className='float-end'>
                   Save
@@ -155,7 +155,7 @@ export default class Footer extends Component {
                   <a href="http://t.me/Mustafo_Ali_7">
                     <i className="fab fa-telegram "></i>
                   </a>
-                  <a href="http://facebook.com/Alimardon%Mustafoqulov">
+                  <a href="http://facebook.com/alimardon.mustafoqulov.1/">
                     <i className="fab fa-facebook-f "></i>
                   </a>
                 </p>

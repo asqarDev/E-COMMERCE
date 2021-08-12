@@ -8,9 +8,9 @@ import {ruLanguege} from './Redux/Actions/ruLanguege'
 
 
 
-class Content extends Component {
+class Contents extends Component {
   render() {
-    const { uzLang } = this.props;
+    const { uzLange } = this.props;
     const changeSelect = (value) => {
       if (value == "uz") {
         this.props.uzLanguege();
@@ -23,10 +23,11 @@ class Content extends Component {
     return (
       <div className="container">
         <button onClick={this.props.uzLanguege}>uz</button>
-        <button onClick={this.props.ruLanguege}>en</button>
+        <button onClick={this.props.ruLanguege}>ru</button>
         <button onClick={this.props.enLanguege}>en</button>
         <div className="card-body">
-          <h3>{uzLang ? "Salom" : "Hello"}</h3>
+          hello one
+          <h3>{uzLange?"salom":"hello"}</h3>
           <p></p>
         </div>
       </div>
@@ -39,7 +40,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { enLanguege, uzLanguege })(Content);
+export default connect(mapStateToProps, { enLanguege, uzLanguege,ruLanguege })(Contents);
 
 
 

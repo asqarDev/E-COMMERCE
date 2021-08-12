@@ -22,8 +22,9 @@ export default function Navbar() {
 
     <>
       <header>
+
         <div className="container">
-          <nav style={{width:'100%',padding:'2rem 0',backgroundColor:'grey',marginTop:'10px'}}>
+          {/* <nav style={{width:'100%',padding:'2rem 0',backgroundColor:'grey',marginTop:'10px'}}>
             <button onClick={()=>handleClick('uz')}>
                 Uzbekcha
             </button>
@@ -33,7 +34,7 @@ export default function Navbar() {
             <button onClick={()=>handleClick('en')}>
                 English
             </button>
-          </nav>
+          </nav> */}
           <div className="row py-2 justify-content-between">
             <div className="col-lg-5 col-md-6 col-sm-6">
               <a href="http://staff.tiiame.uz/" className="linkLogo">

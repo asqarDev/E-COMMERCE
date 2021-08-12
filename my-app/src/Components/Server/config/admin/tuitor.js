@@ -1,4 +1,4 @@
-import { host, HttpRequest } from "../../host";
+import { host, host1, HttpRequest } from "../../host";
 
 export let saveTuitor = () => {
   let config = {
@@ -23,7 +23,7 @@ export let saveNumber = () => {
 }
 export let getPosts = (formDataObj) => {
     let config = {
-      url: `${host}uz/me/contact/`,
+      url: `${host}/me/contact/`,
       method: "POST",
       data: formDataObj
     };

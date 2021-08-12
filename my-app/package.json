@@ -25,7 +25,8 @@
     "react-typed": "^1.2.0",
     "redux": "^4.1.0",
     "typed": "^0.3.3",
-    "web-vitals": "^1.0.1"
+    "web-vitals": "^1.0.1",
+    "yarn": "^1.22.11"
   },
   "scripts": {
     "start": "react-scripts start",

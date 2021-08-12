@@ -30,7 +30,7 @@ export default class Maqolalar extends Component {
             <tr className="tables">
               <td>{item.count}</td>
               <td>
-                <a download href={"data:"+host+item.file}>
+                <a download={`${host}/articles​/{id}​/download​/`} href={"data:"+host+item.file}>
                   {item.name}
                 </a>
               </td>
