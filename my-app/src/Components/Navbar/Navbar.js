@@ -64,6 +64,25 @@ render(){
               </Link>
             </li>
           </ul>
+         <div className='d-flex'>
+         <div className="navbar-toggler mx-2">
+              <Select
+                className=""
+                defaultValue="UZ"
+                style={{ width: 120 }}
+                onChange={handleChange}
+              >
+                <Option value="UZ">
+                  Uzbekcha
+                </Option>
+                <Option value="RU">
+                  Russin
+                </Option>
+                <Option value="EN" >
+                  English
+                </Option>
+              </Select>
+            </div>
           <button
             className="navbar-toggler"
             type="button"
@@ -75,6 +94,7 @@ render(){
           >
             <i className="fas fa-bars" style={{ color: "black" }}></i>
           </button>
+         </div>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
@@ -117,7 +137,7 @@ render(){
                 </a>
               </li>
             </ul>
-            <div className="">
+            <div className="mySelect">
               <Select
                 className=""
                 defaultValue="UZ"

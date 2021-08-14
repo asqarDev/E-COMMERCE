@@ -12,34 +12,21 @@ import Taqdimotlar from "./Components/HomPages/Taqdimotlar";
 import Loyihalar from "./Components/HomPages/Loyihalar";
 import Tadbirlar from "./Components/HomPages/Tadbirlar";
 import Videolar from "./Components/HomPages/Videolar";
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { host } from "./Components/Server/host";
+import React from "react";
 function App() {
-  const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(false);
-  useEffect(() => {
-    const fetchPosts = async () => {
-      setLoading(true);
-      const res = await axios.get(`${host}`);
-      setPosts(res.data);
-      setLoading(false);
-    };
-    fetchPosts();
-  }, []);
-
+  
   return (
     <>
       <Router>
         <Navbar />
         <Switch>
           <Route exact path="/" render={() => <Section />} />
-          <Route path="/Maqolalar" render={() => <Maqolalar loading={loading} />} />
-          <Route path="/Kitoblar" render={() => <Kitoblar loading={loading} />} />
-          <Route path="/taqdimotlar" render={() => <Taqdimotlar loading={loading}/>} />
-          <Route path="/loyihalar" render={() => <Loyihalar loading={loading}/>} />
-          <Route path="/tadbirlar" render={() => <Tadbirlar loading={loading}/>} />
-          <Route path="/videolar" render={() => <Videolar loading={loading}/>} />
+          <Route path="/Maqolalar" render={() => <Maqolalar />} />
+          <Route path="/Kitoblar" render={() => <Kitoblar />} />
+          <Route path="/taqdimotlar" render={() => <Taqdimotlar/>} />
+          <Route path="/loyihalar" render={() => <Loyihalar/>} />
+          <Route path="/tadbirlar" render={() => <Tadbirlar/>} />
+          <Route path="/videolar" render={() => <Videolar/>} />
         </Switch>
         <Footer />
       </Router>

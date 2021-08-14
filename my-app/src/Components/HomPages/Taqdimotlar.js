@@ -36,6 +36,7 @@ class Taqdimotlar extends Component {
               <td>
                 <a download href={item.file}>
                   {item.name}
+                  <span className='badge badge-primary mydownload'>download</span>
                 </a>
               </td>
               <td>

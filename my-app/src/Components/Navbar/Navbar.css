@@ -62,3 +62,8 @@ nav .nav-link{
         margin-left: 5px;
     }
   }
+  @media screen and (max-width: 991px) {
+    .mySelect{
+        display: none;
+    }
+  }
