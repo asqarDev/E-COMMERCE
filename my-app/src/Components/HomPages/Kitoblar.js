@@ -6,7 +6,11 @@ import "./index.css";
 import ReactPaginate from "react-paginate";
 import axios from "axios";
 import { host } from "../Server/host";
-export default class Kitoblar extends Component {
+import { connect } from "react-redux";
+import {uzLanguege} from '../../Redux/Actions/uzLanguege';
+import {ruLanguege} from '../../Redux/Actions/ruLanguege';
+import {enLanguege} from '../../Redux/Actions/enLanguege';
+class Kitoblar extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -77,6 +81,7 @@ export default class Kitoblar extends Component {
     this.receivedData();
   }
   render() {
+    const {uzLang, enLang} = this.props
     return (
       <>
         <AsisentPages />
@@ -88,7 +93,7 @@ export default class Kitoblar extends Component {
             <div className="col-lg-9">
               <p className="izoh">
                 {" "}
-                <i className="fas fa-book"></i> Kitoblar ro'yxati
+                <i className="fas fa-book"></i>  {uzLang?"Kitoblar ro'yxati":enLang?" List of Books":"Список книг"}
               </p>
               <Table
                 striped
@@ -100,9 +105,9 @@ export default class Kitoblar extends Component {
               >
                 <thead>
                   <tr>
-                    <th className="">№</th>
-                    <th>TO‘LIQ NOMI</th>
-                    <th>HAVOLA</th>
+                    <th>{uzLang?"MUQOVASI":enLang?"COVER":"ОБЛОЖКА"}</th>
+                    <th className='w-75'>{uzLang?"TO‘LIQ NOMI":enLang?"FULL TITLE":"ПОЛЬНОЕ НАЗВАНИЕ"}</th>
+                    <th>{uzLang?"HAVOLA":enLang?"LINK":"ССЫЛКА"}</th>
                   </tr>
                 </thead>
                 <tbody>{this.state.postData}</tbody>
@@ -129,3 +134,11 @@ export default class Kitoblar extends Component {
     );
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    uzLang: state.changeLang.uzLang,
+    enLang: state.changeLang.enLang,
+  };
+};
+
+export default connect(mapStateToProps, {uzLanguege,  ruLanguege, enLanguege })(Kitoblar);

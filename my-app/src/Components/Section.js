@@ -3,7 +3,11 @@ import AsisentPages from "./pages/AsisentPages";
 import ProfilPages from "./pages/ProfilPages";
 import "./section.css";
 import { saveTuitor } from "./Server/config/admin/tuitor";
-export default class Section extends Component {
+import { uzLanguege } from "../Redux/Actions/uzLanguege";
+import { ruLanguege } from "../Redux/Actions/ruLanguege";
+import { enLanguege } from "../Redux/Actions/enLanguege";
+import { connect } from "react-redux";
+class Section extends Component {
   state = {
     userdata: [],
     profiledata: [],
@@ -11,7 +15,7 @@ export default class Section extends Component {
   getSection = () => {
     saveTuitor()
       .then((res) => {
-        console.log(res.data)
+        
         this.setState({
           userdata: res.data,
           profiledata: res.data.user,
@@ -26,6 +30,7 @@ export default class Section extends Component {
   }
   render() {
     const { userdata, profiledata } = this.state;
+    const {uzLang, enLang} = this.props
     return (
       <>
         <AsisentPages />
@@ -43,21 +48,21 @@ export default class Section extends Component {
                         {profiledata.last_name} {profiledata.first_name}
                       </h3>
                       <p>
-                        <b>Fakultet: </b>
+                        <b>{uzLang?"Fakultet:":enLang?"Faculty:":"Факультет:"} </b>
                         {userdata.faculty}
                       </p>
 
                       <p>
-                        <b>Kafedra: </b> {userdata.cafedra}
+                        <b>{uzLang?"Kafedra:":enLang?"Department:":"Кафедра:"} </b> {userdata.cafedra}
                       </p>
                       <p>
-                        <b>Ilmiy daraja va unvon: </b> {userdata.level}
+                        <b>{uzLang?"Ilmiy daraja va unvon:":enLang?"Degree:":"Научная степень и звание :"} </b> {userdata.level}
                       </p>
                       <p>
-                        <b>E-pochta: </b> {profiledata.email}
+                        <b>{uzLang?"E-pochta:":enLang?"Email:":"Э-почта:"} </b> {profiledata.email}
                       </p>
                       <hr />
-                      <h5 className="py-3">Qo‘shimcha ma'lumotlar</h5>
+                      <h5 className="py-3">{uzLang?"Qo‘shimcha ma'lumotlar":enLang?"Additional information":"Дополнительная информация"}</h5>
                     </div>
                   }
                 </div>
@@ -66,7 +71,7 @@ export default class Section extends Component {
                   <div className="col-lg-6 col-md-6">
                     <div className="card ">
                       <p className="p-2">
-                        <i className="fas fa-user"></i> Foydalanuvchi hisoblari
+                        <i className="fas fa-user"></i> {uzLang?"Foydalanuvchi hisoblari":enLang?"User Accounts":" Аккаунты пользователя"}
                       </p>
                     </div>
                   </div>
@@ -78,7 +83,7 @@ export default class Section extends Component {
                           className="index" target='_blank'
                           href="https://www.scopus.com/authid/detail.uri?authorId=57222124633"
                         >
-                          h-Indeksi
+                          {uzLang?"h-Indeksi":enLang?"Citations":"Индекс Хирша"}
                         </a>
                       </p>
                     </div>
@@ -109,3 +114,11 @@ export default class Section extends Component {
     );
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    uzLang: state.changeLang.uzLang,
+    enLang: state.changeLang.enLang,
+  };
+};
+
+export default connect(mapStateToProps, {uzLanguege,  ruLanguege, enLanguege })(Section);

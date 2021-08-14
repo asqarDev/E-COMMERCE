@@ -6,7 +6,11 @@ import "./index.css";
 import { host } from "../Server/host";
 import axios from "axios";
 import ReactPaginate from "react-paginate";
-export default class Tadbirlar extends Component {
+import {uzLanguege} from '../../Redux/Actions/uzLanguege';
+import {ruLanguege} from '../../Redux/Actions/ruLanguege';
+import {enLanguege} from '../../Redux/Actions/enLanguege';
+import { connect } from "react-redux";
+class Tadbirlar extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -78,6 +82,7 @@ export default class Tadbirlar extends Component {
   }
 
   render() {
+    const {uzLang, enLang} = this.props;
     return (
       <>
         <AsisentPages />
@@ -89,21 +94,21 @@ export default class Tadbirlar extends Component {
             <div className="col-lg-9">
               <p className="izoh">
                 {" "}
-                <i className="fas fa-calendar-alt"></i> Tadbirlar ro‘yxati
+                <i className="fas fa-calendar-alt"></i> {uzLang?"Tadbirlar ro‘yxati":enLang?"List of Events":"Список мероприятий"}
               </p>
               <Table
                 striped
                 bordered
                 hover
-                size="xl"
+                size="lg"
                 text="center"
                 className="tables mt-4"
               >
                 <thead>
                   <tr>
-                    <th>#</th>
-                    <th>TO‘LIQ NOMI</th>
-                    <th>HAVOLA</th>
+                  <th>#</th>
+                    <th>{uzLang?"TO‘LIQ NOMI":enLang?"FULL TITLE":"ПОЛЬНОЕ НАЗВАНИЕ"}</th>
+                    <th>{uzLang?"HAVOLA":enLang?"LINK":"ССЫЛКА"}</th>
                   </tr>
                 </thead>
                 <tbody>{this.state.postData}</tbody>
@@ -130,3 +135,11 @@ export default class Tadbirlar extends Component {
     );
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    uzLang: state.changeLang.uzLang,
+    enLang: state.changeLang.enLang,
+  };
+};
+
+export default connect(mapStateToProps, {uzLanguege,  ruLanguege, enLanguege })(Tadbirlar);

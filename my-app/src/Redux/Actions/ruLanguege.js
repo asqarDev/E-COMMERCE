@@ -1,4 +1,4 @@
-export const uzLanguege=()=>{
+export const ruLanguege=()=>{
     return{
         type:'ru'
     }

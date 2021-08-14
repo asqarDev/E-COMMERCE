@@ -1,40 +1,33 @@
-import React, { useState, useEffect } from "react";
+import React, { Component } from "react";
 import "./Navbar.css";
 import "../../assets/FA/css/all.min.css";
 import { Link } from "react-router-dom";
 import { Select } from "antd";
-import { useTranslation } from "react-i18next";
-
-export default function Navbar() {
- 
-  const hoompage = "Bosh sahifa";
-  const { Option } = Select;
-  const { t, i18n } = useTranslation();
-
+import { uzLanguege } from "../../Redux/Actions/uzLanguege";
+import { enLanguege } from "../../Redux/Actions/enLanguege";
+import { ruLanguege } from "../../Redux/Actions/ruLanguege";
+import { connect } from "react-redux";
+class  Navbar extends Component{
+render(){
+  const {uzLang,enLang} = this.props;
   const handleChange = (value) => {
-    console.log(`selected ${value}`);
+    console.log(value)
+    if (value === "UZ") {
+      this.props.uzLanguege();
+    } else if (value === "RU") {
+      this.props.ruLanguege();
+    }else if(value === "EN"){
+      this.props.enLanguege();
+    }
   };
-  const handleClick = (lang) => {
-    i18n.changeLanguage(lang);
-  };
-
+  const { Option } = Select;
   return (
-
+    
     <>
       <header>
 
         <div className="container">
-          {/* <nav style={{width:'100%',padding:'2rem 0',backgroundColor:'grey',marginTop:'10px'}}>
-            <button onClick={()=>handleClick('uz')}>
-                Uzbekcha
-            </button>
-            <button onClick={()=>handleClick('ru')}>
-                Russin
-            </button>
-            <button onClick={()=>handleClick('en')}>
-                English
-            </button>
-          </nav> */}
+
           <div className="row py-2 justify-content-between">
             <div className="col-lg-5 col-md-6 col-sm-6">
               <a href="http://staff.tiiame.uz/" className="linkLogo">
@@ -43,7 +36,7 @@ export default function Navbar() {
                     <img height="70px" src="/img/logo.png" alt="logo" />
                   </div>
                   <div className="logoh6">
-                    <h6>{t('Thanks.1')}</h6>
+                    <h6>{uzLang?"TOSHKENT IRRIGATSIYA VA QISHLOQ XO'JALIGINI MEXANIZATSIYALASH MUHANDISLARI INSTITUTI":enLang?"TASHKENT INSTITUTE OF IRRIGATION AND AGRICULTURAL MECHANIZATION ENGINEERS":"ТАШКЕНТСКИЙ ИНСТИТУТ ИНЖЕНЕРОВ ИРРИГАЦИИ И МЕХАНИЗАЦИИ СЕЛЬСКОГО ХОЗЯЙСТВА"}</h6>
                   </div>
                 </div>
               </a>
@@ -51,7 +44,7 @@ export default function Navbar() {
             <div className="col-lg-6 col-md-6 col-sm-6 d-flex justify-content-end align-items-center">
               <div>
                 <a href="https://morning-peak-42064.herokuapp.com/admin/">
-                  <i className="fas fa-user "></i> {t('why.1')}
+                  <i className="fas fa-user "></i> {uzLang?"Kirish":enLang?"Login":"Войти"}
                 </a>
               </div>
             </div>
@@ -67,7 +60,7 @@ export default function Navbar() {
                 className="nav-link active sahifa"
                 aria-current="page"
               >
-                {hoompage}
+                {uzLang?"Bosh sahifa":enLang?"Home":"Главная"}
               </Link>
             </li>
           </ul>
@@ -86,12 +79,12 @@ export default function Navbar() {
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
                 <Link to="/Maqolalar" className="nav-link" aria-current="page">
-                  Maqolalar
+                  {uzLang?"Maqolalar":enLang?"Articles":"Статьи"}
                 </Link>
               </li>
               <li className="nav-item">
                 <Link to="/Kitoblar" className="nav-link" aria-current="page">
-                  Kitoblar
+                  {uzLang?"Kitoblar":enLang?"Books":"Книги"}
                 </Link>
               </li>
               <li className="nav-item">
@@ -100,44 +93,44 @@ export default function Navbar() {
                   className="nav-link"
                   aria-current="page"
                 >
-                  Taqdimotlar
+                  {uzLang?"Taqdimotlar":enLang?"Presentations":"Презентации"}
                 </Link>
               </li>
               <li className="nav-item">
                 <Link to="/loyihalar" className="nav-link" aria-current="page">
-                  Loyihalar
+                  {uzLang?"Loyihalar":enLang?"Projects":"Проекты"}
                 </Link>
               </li>
               <li className="nav-item">
                 <Link to="/Tadbirlar" className="nav-link" aria-current="page">
-                  Tadbirlar
+                  {uzLang?"Tadbirlar":enLang?"Events":"Мероприятия"}
                 </Link>
               </li>
               <li className="nav-item">
                 <Link to="/videolar" className="nav-link" aria-current="page">
-                  Videolar
+                  {uzLang?"Videolar":enLang?"Videos":"Видеоуроки"}
                 </Link>
               </li>
               <li className="nav-item">
                 <a href="#footer" className="nav-link" aria-current="page">
-                  Bog'lanish
+                  {uzLang?"Bog\'lanish":enLang?"Contact":"контакты"}
                 </a>
               </li>
             </ul>
             <div className="">
               <Select
                 className=""
-                defaultValue="Uzb"
+                defaultValue="UZ"
                 style={{ width: 120 }}
                 onChange={handleChange}
               >
-                <Option value="Uzbekcha" onClick={() => handleClick("uz")}>
+                <Option value="UZ">
                   Uzbekcha
                 </Option>
-                <Option value="Russin" onClick={() => handleClick("ru")}>
+                <Option value="RU">
                   Russin
                 </Option>
-                <Option value="English" onClick={() => handleClick("en")}>
+                <Option value="EN" >
                   English
                 </Option>
               </Select>
@@ -148,3 +141,15 @@ export default function Navbar() {
     </>
   );
 }
+}
+const mapStateToProps = (state) => {
+  return {
+    uzLang: state.changeLang.uzLang,
+    enLang: state.changeLang.enLang,
+  };
+};
+
+export default connect(mapStateToProps, {uzLanguege,  ruLanguege, enLanguege })(Navbar);
+
+
+ 

@@ -5,7 +5,11 @@ import "./index.css";
 import { host, host1 } from "../Server/host";
 import axios from "axios";
 import ReactPaginate from "react-paginate";
-export default class Videolar extends Component {
+import {uzLanguege} from '../../Redux/Actions/uzLanguege';
+import {ruLanguege} from '../../Redux/Actions/ruLanguege';
+import {enLanguege} from '../../Redux/Actions/enLanguege';
+import { connect } from "react-redux";
+class Videolar extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -68,6 +72,7 @@ export default class Videolar extends Component {
     this.receivedData();
   }
   render() {
+    const {uzLang, enLang} = this.props;
     return (
       <>
         <AsisentPages />
@@ -79,7 +84,7 @@ export default class Videolar extends Component {
             <div className="col-lg-9 overflow-hidden">
               <p className="izoh">
                 {" "}
-                <i className="fas fa-file-video"></i> Videolar ro‘yxati
+                <i className="fas fa-file-video"></i>  {uzLang?"Videolar ro‘yxati":enLang?"List of Videos":"Список видеоуроков"}
               </p>
               <div>{this.state.postData}</div>
               <div className="d-flex w-100% paginates">
@@ -104,3 +109,11 @@ export default class Videolar extends Component {
     );
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    uzLang: state.changeLang.uzLang,
+    enLang: state.changeLang.enLang,
+  };
+};
+
+export default connect(mapStateToProps, {uzLanguege,  ruLanguege, enLanguege })(Videolar);

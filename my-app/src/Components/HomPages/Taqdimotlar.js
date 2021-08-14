@@ -6,7 +6,11 @@ import "./index.css";
 import axios from "axios";
 import { host } from "../Server/host";
 import ReactPaginate from "react-paginate";
-export default class Taqdimotlar extends Component {
+import { connect } from "react-redux";
+import {uzLanguege} from '../../Redux/Actions/uzLanguege';
+import {ruLanguege} from '../../Redux/Actions/ruLanguege';
+import {enLanguege} from '../../Redux/Actions/enLanguege';
+class Taqdimotlar extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -77,6 +81,7 @@ export default class Taqdimotlar extends Component {
     this.receivedData();
   }
   render() {
+    const {uzLang, enLang} = this.props;
     return (
       <>
         <AsisentPages />
@@ -88,7 +93,7 @@ export default class Taqdimotlar extends Component {
             <div className="col-lg-9">
               <p className="izoh">
                 {" "}
-                <i className="fas fa-file-powerpoint"></i> Taqdimotlar ro‘yxati
+                <i className="fas fa-file-powerpoint"></i>  {uzLang?"Taqdimotlar ro‘yxati":enLang?"List of Presentations":"Список презентаций"}
               </p>
               <Table
                 striped
@@ -100,9 +105,9 @@ export default class Taqdimotlar extends Component {
               >
                 <thead>
                   <tr>
-                    <th>#</th>
-                    <th>TO‘LIQ NOMI</th>
-                    <th>HAVOLA</th>
+                  <th>#</th>
+                    <th>{uzLang?"TO‘LIQ NOMI":enLang?"FULL TITLE":"ПОЛЬНОЕ НАЗВАНИЕ"}</th>
+                    <th>{uzLang?"HAVOLA":enLang?"LINK":"ССЫЛКА"}</th>
                   </tr>
                 </thead>
                 <tbody>{this.state.postData}</tbody>
@@ -129,3 +134,11 @@ export default class Taqdimotlar extends Component {
     );
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    uzLang: state.changeLang.uzLang,
+    enLang: state.changeLang.enLang,
+  };
+};
+
+export default connect(mapStateToProps, {uzLanguege,  ruLanguege, enLanguege })(Taqdimotlar);

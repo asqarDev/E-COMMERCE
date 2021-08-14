@@ -2,7 +2,11 @@ import React, { Component } from "react";
 import { host1 } from "../Server/host";
 import "./Asisent.css";
 import { saveTuitor } from "../Server/config/admin/tuitor";
-export default class ProfilPages extends Component {
+import { connect } from "react-redux";
+import {uzLanguege} from '../../Redux/Actions/uzLanguege';
+import {ruLanguege} from '../../Redux/Actions/ruLanguege';
+import {enLanguege} from '../../Redux/Actions/enLanguege';
+ class ProfilPages extends Component {
   state = {
     userdata: [],
   };
@@ -13,7 +17,7 @@ export default class ProfilPages extends Component {
         });
       })
       .catch((res) => {
-        alert("internet bilan muamo bor")
+        
       });
   }
   componentDidMount() {
@@ -21,6 +25,7 @@ export default class ProfilPages extends Component {
   }
   render() {
     const { userdata } = this.state;
+    const {uzLang, enLang} = this.props
     return (
       <>
         <div className="card mycard mb-4">
@@ -34,7 +39,7 @@ export default class ProfilPages extends Component {
           </div>
           <div className="card-body">
             <button className="btn mybtn w-100">
-              <i className="fas fa-address-card mx-2"></i>Profile
+              <i className="fas fa-address-card mx-2"></i>{uzLang?"Profil":enLang?"Profile":"Профил"}
             </button>
           </div>
         </div>
@@ -42,3 +47,11 @@ export default class ProfilPages extends Component {
     );
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    uzLang: state.changeLang.uzLang,
+    enLang: state.changeLang.enLang,
+  };
+};
+
+export default connect(mapStateToProps, {uzLanguege,  ruLanguege, enLanguege })(ProfilPages);

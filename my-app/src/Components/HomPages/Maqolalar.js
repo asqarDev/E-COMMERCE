@@ -6,7 +6,11 @@ import axios from "axios";
 import "./index.css";
 import { host } from "../Server/host";
 import ReactPaginate from "react-paginate";
-export default class Maqolalar extends Component {
+import { connect } from "react-redux";
+import {uzLanguege} from '../../Redux/Actions/uzLanguege';
+import {ruLanguege} from '../../Redux/Actions/ruLanguege';
+import {enLanguege} from '../../Redux/Actions/enLanguege';
+class Maqolalar extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -30,7 +34,7 @@ export default class Maqolalar extends Component {
             <tr className="tables">
               <td>{item.count}</td>
               <td>
-                <a download={`${host}/articles​/{id}​/download​/`} href={"data:"+host+item.file}>
+                <a download href={item.file}>
                   {item.name}
                 </a>
               </td>
@@ -78,7 +82,7 @@ export default class Maqolalar extends Component {
     this.receivedData();
   }
   render() {
-    const { maqola } = this.state;
+    const {uzLang, enLang} = this.props
     return (
       <>
         <AsisentPages />
@@ -90,7 +94,7 @@ export default class Maqolalar extends Component {
             <div className="col-lg-9">
               <p className="izoh">
                 {" "}
-                <i className="fas fa-newspaper"></i> Maqola
+                <i className="fas fa-newspaper"></i> {uzLang?"Maqolalar ro‘yxati":enLang?"List of Articles":" Список статей"}
               </p>
               <Table
                 striped
@@ -103,8 +107,8 @@ export default class Maqolalar extends Component {
                 <thead>
                   <tr>
                     <th>#</th>
-                    <th>TO‘LIQ NOMI</th>
-                    <th>HAVOLA</th>
+                    <th>{uzLang?"TO‘LIQ NOMI":enLang?"FULL TITLE":"ПОЛЬНОЕ НАЗВАНИЕ"}</th>
+                    <th>{uzLang?"HAVOLA":enLang?"LINK":"ССЫЛКА"}</th>
                   </tr>
                 </thead>
                 <tbody>{this.state.postData}</tbody>
@@ -131,3 +135,11 @@ export default class Maqolalar extends Component {
     );
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    uzLang: state.changeLang.uzLang,
+    enLang: state.changeLang.enLang,
+  };
+};
+
+export default connect(mapStateToProps, {uzLanguege,  ruLanguege, enLanguege })(Maqolalar);

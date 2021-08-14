@@ -1,31 +1,28 @@
 
 const initialState={
-    uzLage:true,
-    enLage:false
+    uzLang:true,
+    enLang:false
 }
 export const langRedusers=(state=initialState, action)=>{
     switch(action.type){
         case 'uz':
-            console.log('uz')
-            return{uzLage:true,
-                enLage:false
+            return{uzLang:true,
+                enLang:false
             }
             break;
         case 'ru':
-                console.log('ru')
-                return{uzLage:false,
-                    enLage:false
+                return{uzLang:false,
+                    enLang:false
                 }
                 break;
         case 'en':
-            console.log('en')
-            return{enLage:false,
-                enLage:false
+            return{uzLang:false,
+                enLang:true,
             }
             break;
         default:
-            console.log('default')
-            return{uzLage:true}
+            return{uzLang:true,
+            enLang:false}
             break;
     }
 }

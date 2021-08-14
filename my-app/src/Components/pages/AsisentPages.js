@@ -1,9 +1,12 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import Typed from "react-typed";
 import { saveTuitor } from "../Server/config/admin/tuitor";
 import "./Asisent.css";
-export default class AsisentPages extends Component {
-  hompage = "Bosh sahifa";
+import {uzLanguege} from '../../Redux/Actions/uzLanguege'
+import {enLanguege} from '../../Redux/Actions/enLanguege'
+import {ruLanguege} from '../../Redux/Actions/ruLanguege'
+class AsisentPages extends Component {
   name=['Mustafoqulov Alimardon Mamatovich']
   state = {
     userdata: [],
@@ -26,6 +29,7 @@ export default class AsisentPages extends Component {
   }
   render() {
     const { userdata, profiledata } = this.state;
+    const {uzLang,enLang} = this.props;
     return (
       <div className="section-1">
         <div className="container">
@@ -40,7 +44,7 @@ export default class AsisentPages extends Component {
               />{" "}
               <p className=" my-2">
                 <a>
-                  {this.hompage} <i className="fas fa-chevron-right mx-2"></i>
+                  {uzLang?"Bosh sahifa":enLang?"Home":"Главная"} <i className="fas fa-chevron-right mx-2"></i>
                 </a>{" "}
                 <p className="d-inline-block myname">
                   {profiledata.last_name + " " + profiledata.first_name}
@@ -53,3 +57,11 @@ export default class AsisentPages extends Component {
     );
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    uzLang: state.changeLang.uzLang,
+    enLang: state.changeLang.enLang,
+  };
+};
+
+export default connect(mapStateToProps, {uzLanguege,  ruLanguege, enLanguege })(AsisentPages);

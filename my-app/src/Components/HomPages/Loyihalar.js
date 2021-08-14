@@ -6,7 +6,11 @@ import "./index.css";
 import ReactPaginate from "react-paginate";
 import { host } from "../Server/host";
 import axios from "axios";
-export default class Loyihalar extends Component {
+import { connect } from "react-redux";
+import {uzLanguege} from '../../Redux/Actions/uzLanguege';
+import {ruLanguege} from '../../Redux/Actions/ruLanguege';
+import {enLanguege} from '../../Redux/Actions/enLanguege';
+class Loyihalar extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -77,6 +81,7 @@ export default class Loyihalar extends Component {
     this.receivedData();
   }
   render() {
+    const {uzLang, enLang} = this.props;
     return (
       <>
         <AsisentPages />
@@ -88,7 +93,7 @@ export default class Loyihalar extends Component {
             <div className="col-lg-9">
               <p className="izoh">
                 {" "}
-                <i className="fas fa-file-archive"></i> Loyihalar ro‘yxati
+                <i className="fas fa-file-archive"></i> {uzLang?"Loyihalar ro‘yxati":enLang?"List of Projects":" Спсок проектов"}
               </p>
               <Table
                 striped
@@ -100,9 +105,9 @@ export default class Loyihalar extends Component {
               >
                 <thead>
                   <tr>
-                    <th>#</th>
-                    <th>TO‘LIQ NOMI</th>
-                    <th>HAVOLA</th>
+                  <th>#</th>
+                    <th>{uzLang?"TO‘LIQ NOMI":enLang?"FULL TITLE":"ПОЛЬНОЕ НАЗВАНИЕ"}</th>
+                    <th>{uzLang?"HAVOLA":enLang?"LINK":"ССЫЛКА"}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -132,3 +137,11 @@ export default class Loyihalar extends Component {
     );
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    uzLang: state.changeLang.uzLang,
+    enLang: state.changeLang.enLang,
+  };
+};
+
+export default connect(mapStateToProps, {uzLanguege,  ruLanguege, enLanguege })(Loyihalar);
