@@ -12,21 +12,23 @@ class Section extends Component {
     userdata: [],
     profiledata: [],
   };
-  getSection = () => {
-    saveTuitor()
-      .then((res) => {
-        
-        this.setState({
-          userdata: res.data,
-          profiledata: res.data.user,
-        });
-      })
-      .catch((res) => {
-        alert("Servirda Xatolik bor");
+  getSection = (uz,en) => {
+    saveTuitor(uz,en)
+    .then((res) => {
+      console.log(res.data)
+      this.setState({
+        userdata: res.data,
+        profiledata: res.data.user,
       });
+      // window.location.reload()
+    })
+    .catch((res) => {
+      
+    });
+    
   };
   componentDidMount() {
-    this.getSection();
+    this.getSection(this.props.uzLang,this.props.enLang);
   }
   render() {
     const { userdata, profiledata } = this.state;
@@ -49,9 +51,8 @@ class Section extends Component {
                       </h3>
                       <p>
                         <b>{uzLang?"Fakultet:":enLang?"Faculty:":"Факультет:"} </b>
-                        {userdata.faculty}
+                        {userdata.faculty} 
                       </p>
-
                       <p>
                         <b>{uzLang?"Kafedra:":enLang?"Department:":"Кафедра:"} </b> {userdata.cafedra}
                       </p>

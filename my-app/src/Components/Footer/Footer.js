@@ -13,13 +13,17 @@ class Footer extends Component {
     number2:[]
   }
   getFooter=()=>{
-    saveMaps().then(res=>(
+    saveMaps(this.props.uzLang,this.props.enLang).then(res=>(
+    
       this.setState({
         maps:res.data[0],
       })
+      
+      
     )).catch(res=>(
-      alert("i am sorry!")
+      console.log("kechirasiz")
     ))
+    
 
     saveNumber().then(res=>(
 
@@ -61,7 +65,7 @@ class Footer extends Component {
         <div className="container pt-5">
           <div className="row mb-5 justify-content-center">
             <div className="col-lg-6">
-              <h4 className="text-center post">{uzLang?"Posts":enLang?"Comments":"Сообщения"}</h4>
+              <h4 className="text-center post">{uzLang?"Xabar yuborish":enLang?"Get In Touch with Me":"Сообщения"}</h4>
               <Form onSubmit={(e) => this.addTodo(e)}>
                 <Form.Group controlId="text">
                   <Form.Label>{uzLang?"Mavzular":enLang?"Subject":"Предметы"}</Form.Label>

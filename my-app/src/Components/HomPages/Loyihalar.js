@@ -10,6 +10,7 @@ import { connect } from "react-redux";
 import {uzLanguege} from '../../Redux/Actions/uzLanguege';
 import {ruLanguege} from '../../Redux/Actions/ruLanguege';
 import {enLanguege} from '../../Redux/Actions/enLanguege';
+import { saveProjects } from "../Server/config/admin/tuitor";
 class Loyihalar extends Component {
   constructor(props) {
     super(props);
@@ -22,7 +23,7 @@ class Loyihalar extends Component {
     this.handlePageClick = this.handlePageClick.bind(this);
   }
   receivedData() {
-    axios.get(`${host}/projects/`).then((res) => {
+    saveProjects().then((res) => {
       const data = res.data;
       const slice = data.slice(
         this.state.offset,
@@ -52,7 +53,7 @@ class Loyihalar extends Component {
                 <a>{item.name}</a>
               </td>
               <td>
-                <a href={item.link} className='links'>Ochish</a>
+                <a href={item.link} className='links'>{this.uzLang?"Ochish":this.enLang?"View":"Открыть"}</a>
               </td>
             </tr>
           </React.Fragment>

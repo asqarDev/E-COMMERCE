@@ -10,6 +10,7 @@ import {uzLanguege} from '../../Redux/Actions/uzLanguege';
 import {ruLanguege} from '../../Redux/Actions/ruLanguege';
 import {enLanguege} from '../../Redux/Actions/enLanguege';
 import { connect } from "react-redux";
+import { saveEvents } from "../Server/config/admin/tuitor";
 class Tadbirlar extends Component {
   constructor(props) {
     super(props);
@@ -22,13 +23,14 @@ class Tadbirlar extends Component {
     this.handlePageClick = this.handlePageClick.bind(this);
   }
   receivedData() {
-    axios.get(`${host}/events/`).then((res) => {
+    saveEvents().then((res) => {
       const data = res.data;
       const slice = data.slice(
         this.state.offset,
         this.state.offset + this.state.perPage
       );
       const postData = slice.map((item) => {
+        
         return item.file != null ? (
           <React.Fragment>
             <tr className="tables">
@@ -52,7 +54,7 @@ class Tadbirlar extends Component {
                 <a>{item.name}</a>
               </td>
               <td>
-                <a href={item.link} className='links'>Ochish</a>
+                <a href={item.link} className='links'>{this.uzLang?"Ochish":this.enLang?"View":"Открыть"}</a>
               </td>
             </tr>
           </React.Fragment>

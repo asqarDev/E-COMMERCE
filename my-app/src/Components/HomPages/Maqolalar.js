@@ -4,12 +4,13 @@ import ProfilPages from "../pages/ProfilPages";
 import { Table } from "react-bootstrap";
 import axios from "axios";
 import "./index.css";
-import { host } from "../Server/host";
+import { host, hosten, hostru } from "../Server/host";
 import ReactPaginate from "react-paginate";
 import { connect } from "react-redux";
 import {uzLanguege} from '../../Redux/Actions/uzLanguege';
 import {ruLanguege} from '../../Redux/Actions/ruLanguege';
 import {enLanguege} from '../../Redux/Actions/enLanguege';
+import { saveArticles } from "../Server/config/admin/tuitor";
 class Maqolalar extends Component {
   constructor(props) {
     super(props);
@@ -22,25 +23,26 @@ class Maqolalar extends Component {
     this.handlePageClick = this.handlePageClick.bind(this);
   }
   receivedData() {
-    axios.get(`${host}/articles/`).then((res) => {
+    saveArticles().then((res) => {
       const data = res.data;
       const slice = data.slice(
         this.state.offset,
         this.state.offset + this.state.perPage
       );
-      const postData = slice.map((item) => {
+      const postData = slice.map((item,uz,en) => {
+        
         return item.file != null ? (
           <React.Fragment>
             <tr className="tables">
               <td>{item.count}</td>
               <td>
-                <a download href={item.file}>
+                <a  href={uz?`${host}/articles/`+item.slug+"/download":en?`${hosten}/articles/`+item.slug+"/download":`${hostru}/articles/`+"/"+item.slug+"/download"} download>
                   {item.name}
                   <span className='badge badge-primary mydownload'>download</span>
                 </a>
               </td>
               <td>
-                <a>  </a>
+                <a> </a>
               </td>
             </tr>
           </React.Fragment>
@@ -52,7 +54,7 @@ class Maqolalar extends Component {
                 <a>{item.name}</a>
               </td>
               <td>
-                <a href={item.link} className='links'>Ochish</a>
+                <a href={item.link} className='links'>{this.uzLang?"Ochish":this.enLang?"View":"Открыть"}</a>
               </td>
             </tr>
           </React.Fragment>

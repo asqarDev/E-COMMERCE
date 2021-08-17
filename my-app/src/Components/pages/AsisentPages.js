@@ -21,7 +21,7 @@ class AsisentPages extends Component {
         });
       })
       .catch((res) => {
-        alert("kechirasiz xatolik uchun");
+        
       });
   }
   componentDidMount() {

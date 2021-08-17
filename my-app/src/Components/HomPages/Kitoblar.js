@@ -5,11 +5,12 @@ import { Table } from "react-bootstrap";
 import "./index.css";
 import ReactPaginate from "react-paginate";
 import axios from "axios";
-import { host } from "../Server/host";
+import { host, hosten, hostru } from "../Server/host";
 import { connect } from "react-redux";
 import {uzLanguege} from '../../Redux/Actions/uzLanguege';
 import {ruLanguege} from '../../Redux/Actions/ruLanguege';
 import {enLanguege} from '../../Redux/Actions/enLanguege';
+import { saveBooks } from "../Server/config/admin/tuitor";
 class Kitoblar extends Component {
   constructor(props) {
     super(props);
@@ -22,19 +23,19 @@ class Kitoblar extends Component {
     this.handlePageClick = this.handlePageClick.bind(this);
   }
   receivedData() {
-    axios.get(`${host}/books/`).then((res) => {
+    saveBooks().then((res) => {
       const data = res.data;
       const slice = data.slice(
         this.state.offset,
         this.state.offset + this.state.perPage
       );
-      const postData = slice.map((item) => {
+      const postData = slice.map((item,uz,en) => {
         return item.file != null ? (
           <React.Fragment>
             <tr className="tables">
               <td>{item.count}</td>
               <td>
-                <a download href={item.file}>
+                <a download href={uz?`${host}/books/`+item.slug+"/download":en?`${hosten}/books/`+item.slug+"/download":`${hostru}/books/`+"/"+item.slug+"/download"}>
                   {item.name}
                   <span className='badge badge-primary mydownload'>download</span>
                 </a>
@@ -52,7 +53,7 @@ class Kitoblar extends Component {
                 <a>{item.name}</a>
               </td>
               <td>
-                <a href={item.link} className='links'>Ochish</a>
+                <a href={item.link} className='links'>{this.uzLang?"Ochish":this.enLang?"View":"Открыть"}</a>
               </td>
             </tr>
           </React.Fragment>
