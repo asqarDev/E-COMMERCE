@@ -3,14 +3,14 @@ import AsisentPages from "../pages/AsisentPages";
 import ProfilPages from "../pages/ProfilPages";
 import { Table } from "react-bootstrap";
 import "./index.css";
-import axios from "axios";
-import { host } from "../Server/host";
+
 import ReactPaginate from "react-paginate";
 import { connect } from "react-redux";
 import {uzLanguege} from '../../Redux/Actions/uzLanguege';
 import {ruLanguege} from '../../Redux/Actions/ruLanguege';
 import {enLanguege} from '../../Redux/Actions/enLanguege';
 import { savePresentations } from "../Server/config/admin/tuitor";
+import { host, hosten, hostru } from "../Server/host";
 class Taqdimotlar extends Component {
   constructor(props) {
     super(props);
@@ -29,13 +29,13 @@ class Taqdimotlar extends Component {
         this.state.offset,
         this.state.offset + this.state.perPage
       );
-      const postData = slice.map((item) => {
+      const postData = slice.map((item,uz,en) => {
         return item.file != null ? (
           <React.Fragment>
             <tr className="tables">
               <td>{item.count}</td>
               <td>
-                <a download href={item.file}>
+                <a download href={uz?`${host}/books/`+item.slug+"/download":en?`${hosten}/books/`+item.slug+"/download":`${hostru}/books/`+"/"+item.slug+"/download"}>
                   {item.name}
                   <span className='badge badge-primary mydownload'>download</span>
                 </a>

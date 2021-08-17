@@ -4,7 +4,7 @@ import AsisentPages from "../pages/AsisentPages";
 import { Table } from "react-bootstrap";
 import "./index.css";
 import ReactPaginate from "react-paginate";
-import axios from "axios";
+
 import { host, hosten, hostru } from "../Server/host";
 import { connect } from "react-redux";
 import {uzLanguege} from '../../Redux/Actions/uzLanguege';

@@ -8,6 +8,7 @@ import {enLanguege} from '../../Redux/Actions/enLanguege'
 import {ruLanguege} from '../../Redux/Actions/ruLanguege'
 class AsisentPages extends Component {
   name=['Mustafoqulov Alimardon Mamatovich']
+  nameen=['Мустафакулов Алимардон Маматович']
   state = {
     userdata: [],
     profiledata: [],
@@ -38,7 +39,7 @@ class AsisentPages extends Component {
               <p className="asisent my-3">{userdata.level}</p>
               <Typed
                 className="typed-text text-center"
-                strings={this.name}
+                strings={uzLang?this.name:enLang?this.name:this.nameen}
                 typeSpeed={100}
                 backSpeed={100}
               />{" "}

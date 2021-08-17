@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import AsisentPages from "../pages/AsisentPages";
 import ProfilPages from "../pages/ProfilPages";
 import { Table } from "react-bootstrap";
-import axios from "axios";
+
 import "./index.css";
 import { host, hosten, hostru } from "../Server/host";
 import ReactPaginate from "react-paginate";

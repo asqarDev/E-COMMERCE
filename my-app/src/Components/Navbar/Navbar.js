@@ -7,11 +7,8 @@ import { uzLanguege } from "../../Redux/Actions/uzLanguege";
 import { enLanguege } from "../../Redux/Actions/enLanguege";
 import { ruLanguege } from "../../Redux/Actions/ruLanguege";
 import { connect } from "react-redux";
-import { GetValue } from "../Server/localstorage";
+
 class  Navbar extends Component{
-  componentDidMount(){
-    // console.log(this.props)
-  }
    handleChange = (value) => {
      console.log(value.target.value)
     // value.preventDefault();
@@ -75,32 +72,13 @@ class  Navbar extends Component{
           </ul>
          <div className='d-flex'>
          <div className="navbar-toggler mx-2">
-              <Select
-                className=""
-                defaultValue={
-                  // GetValue('project1','uz')?"UZ":GetValue('project1','en')?"EN":
-                  "UZ"
-                }
-                initialValue="UZ"
-                style={{ width: 120 }}
-                onChange={this.handleChange}
-              >
-                <Option value="UZ" name="UZ">
-                  Uzbekcha
-                </Option>
-                <Option value="RU" name="RU">
-                  Russin
-                </Option>
-                <Option value="EN"  name="EN">
-                  English
-                </Option>
-              </Select>
-              {/* <select class="form-select form-select-sm" aria-label=".form-select-sm example" onChange={handleChange}>
-  <option selected>Uzbekcha</option>
-  <option value="UZ" name='UZ'>Uzbekcha</option>
-  <option value="EN" name='EN'>English 2</option>
-  <option value="RU" name='Ru'>Russin</option>
-</select> */}
+              <select value={uzLang?"UZ":enLang?"EN":"RU"} className="form-select form-select-sm"
+               aria-label=".form-select-sm example" 
+              onChange={this.handleChange}>
+                    <option value="UZ" name='UZ'>Uzbekcha</option>
+                    <option value="EN" name='EN'>English</option>
+                    <option value="RU" name='RU'>Russin</option>
+              </select>
             </div>
           <button
             className="navbar-toggler"
@@ -157,30 +135,12 @@ class  Navbar extends Component{
               </li>
             </ul>
             <div className="mySelect">
-              {/* <Select
-                className=""
-                defaultValue="UZ"
-                style={{ width: 120 }}
-                onChange={handleChange}
-                initialValue="UZ"
-              >
-                <Option value="UZ" name='UZ'>
-                  Uzbekcha
-                </Option>
-                <Option value="RU" name='RU'>
-                  Russin
-                </Option>
-                <Option value="EN" name='EN'>
-                  English
-                </Option>
-              </Select> */}
               <select value={uzLang?"UZ":enLang?"EN":"RU"} className="form-select form-select-sm"
                aria-label=".form-select-sm example" 
               onChange={this.handleChange}>
-  {/* <option selected>Uzb</option> */}
-        <option value="UZ" name='UZ'>Uzbekcha</option>
-        <option value="EN" name='EN'>English</option>
-        <option value="RU" name='RU'>Russin</option>
+                    <option value="UZ" name='UZ'>Uzbekcha</option>
+                    <option value="EN" name='EN'>English</option>
+                    <option value="RU" name='RU'>Russin</option>
               </select>
             </div>
           </div>

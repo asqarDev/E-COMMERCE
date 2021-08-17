@@ -20,7 +20,6 @@ class Section extends Component {
         userdata: res.data,
         profiledata: res.data.user,
       });
-      // window.location.reload()
     })
     .catch((res) => {
       
@@ -84,7 +83,7 @@ class Section extends Component {
                           className="index" target='_blank'
                           href="https://www.scopus.com/authid/detail.uri?authorId=57222124633"
                         >
-                          {uzLang?"h-Indeksi":enLang?"Citations":"Индекс Хирша"}
+                          {uzLang?"h-Indeksi":enLang?"Citations":"h-показатель"}
                         </a>
                       </p>
                     </div>
