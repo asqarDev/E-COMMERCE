@@ -15,7 +15,7 @@ class Section extends Component {
   getSection = (uz,en) => {
     saveTuitor(uz,en)
     .then((res) => {
-      console.log(res.data)
+      
       this.setState({
         userdata: res.data,
         profiledata: res.data.user,

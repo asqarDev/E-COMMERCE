@@ -22,16 +22,12 @@ import { GetValue } from "./Components/Server/localstorage";
 class App extends React.Component {
   componentDidMount(){
     if (GetValue('project1','uz')) {
-      console.log('uztrue');
       this.props.uzLanguege()
     }else if(GetValue('project1','en')){
       this.props.enLanguege()
-      console.log('entrue');
     }else {
-      console.log('rutrue');
       this.props.ruLanguege()
     }
-    console.log(this.props.uzLang,this.props.enLang)
   }
   render(){
     return (

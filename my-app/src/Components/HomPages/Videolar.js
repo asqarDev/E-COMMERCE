@@ -29,13 +29,13 @@ class Videolar extends Component {
       );
       const postData = slice.map((item) => {
         return item.file != null ? (
-          <div className="mt-5">
+          <div className="mt-5" data-aos="zoom-in" data-aos-duration="3000">
             <video controls width="100%">
               <source src={`${host1}` + item.file} type="video/mp4"></source>
             </video>
           </div>
         ) : (
-          <div className="mt-5">
+          <div className="mt-5" data-aos="zoom-in" data-aos-duration="3000">
             <iframe
               width="100%"
               height="450"

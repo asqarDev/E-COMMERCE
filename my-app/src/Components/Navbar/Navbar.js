@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "./Navbar.css";
 import "../../assets/FA/css/all.min.css";
 import { Link } from "react-router-dom";
-import { Select } from "antd";
 import { uzLanguege } from "../../Redux/Actions/uzLanguege";
 import { enLanguege } from "../../Redux/Actions/enLanguege";
 import { ruLanguege } from "../../Redux/Actions/ruLanguege";
@@ -10,9 +9,7 @@ import { connect } from "react-redux";
 
 class  Navbar extends Component{
    handleChange = (value) => {
-     console.log(value.target.value)
-    // value.preventDefault();
-    console.log(value.target)
+  
     if (value.target.value === "UZ") {
       this.props.uzLanguege();
       window.location.reload()
@@ -26,7 +23,6 @@ class  Navbar extends Component{
   };
   render(){
   const {uzLang,enLang} = this.props;
-  const { Option } = Select;
   return (
     
     <>

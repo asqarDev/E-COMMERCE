@@ -43,7 +43,7 @@ class Footer extends Component {
     e.preventDefault();
     const formData = new FormData(e.target),
       formDataObj = Object.fromEntries(formData.entries());
-    console.log(formDataObj);
+    
     getPosts(formDataObj)
       .then((res) => {
       
@@ -64,9 +64,9 @@ class Footer extends Component {
       <footer>
         <div className="container pt-5">
           <div className="row mb-5 justify-content-center">
-            <div className="col-lg-6">
+            <div className="col-lg-6" >
               <h4 className="text-center post">{uzLang?"Xabar yuborish":enLang?"Get In Touch with Me":"Сообщения"}</h4>
-              <Form onSubmit={(e) => this.addTodo(e)}>
+              <Form onSubmit={(e) => this.addTodo(e)} >
                 <Form.Group controlId="text">
                   <Form.Label>{uzLang?"Mavzular":enLang?"Subject":"Предметы"}</Form.Label>
                   <Form.Control
@@ -98,14 +98,14 @@ class Footer extends Component {
           </div>
 
           <div className="row py-5 row-footer">
-            <div className="col-lg-4">
+            <div className="col-lg-4" data-aos="zoom-in-down" data-aos-duration="2000">
               <h6>{uzLang?"TIZIM HAQIDA":enLang?"ABOUT US":"О СИСТЕМЕ"}</h6>
               <div className="bottom"></div>
               <p className="my-4 py-2 mb-5">
                 {uzLang?"University Profile System axborot tizimi":enLang?"University Profile System information system":"Информационная система University Profile System"}
               </p>
             </div>
-            <div className="col-lg-4 mycol4">
+            <div className="col-lg-4 mycol4" data-aos="zoom-in-down" data-aos-duration="2000">
               <div>
                 <h6>{uzLang?"FOYDALI HAVOLALAR":enLang?"USEFUL LINKS":"ПОЛЕЗНЫЕ ССЫЛКИ"}</h6>
                 <div className="bottom"></div>
@@ -126,7 +126,7 @@ class Footer extends Component {
                 </ul>
               </div>
             </div>
-            <div className="col-lg-4 pb-5">
+            <div className="col-lg-4 pb-5" data-aos="zoom-in-down" data-aos-duration="2000">
               <div className="contacts">
                 <h6>{uzLang?"BOG\‘LANISH":enLang?"OUR CONTACTS":"КОНТАКТЫ"}</h6>
                 <div className="bottom"></div>
@@ -152,7 +152,7 @@ class Footer extends Component {
         </div>
         <div id='footer' className="section-footer">
           <div className="container">
-            <div className="row row-footer p-2 justify-content-between">
+            <div className="row row-footer p-2 justify-content-between" >
               <div className="col-lg-6 py-3 col-md-6">
                 <p>
                   {uzLang?"© 2021 University Profile System. Barcha huquqlar himoyalangan.":enLang?"© 2021 University Profile System. All rights reserved.":"© 2021 University Profile System. Все права защищены."}

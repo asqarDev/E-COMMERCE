@@ -28,7 +28,7 @@ import {enLanguege} from '../../Redux/Actions/enLanguege';
     const {uzLang, enLang} = this.props
     return (
       <>
-        <div className="card mycard mb-4">
+        <div className="card mycard mb-4" data-aos="zoom-in">
           <div className="card-header">
            
             <img

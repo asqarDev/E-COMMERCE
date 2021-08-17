@@ -29,7 +29,7 @@ class Tadbirlar extends Component {
         this.state.offset,
         this.state.offset + this.state.perPage
       );
-      const postData = slice.map((item,uz,en) => {
+      const postData = slice.map((item,uz,en,uzLang,enLang) => {
         
         return item.file != null ? (
           <React.Fragment>
@@ -54,7 +54,7 @@ class Tadbirlar extends Component {
                 <a>{item.name}</a>
               </td>
               <td>
-                <a href={item.link} className='links'>{this.uzLang?"Ochish":this.enLang?"View":"Открыть"}</a>
+                <a href={item.link} className='links'>{uzLang?"Ochish":enLang?"View":"Открыть"}</a>
               </td>
             </tr>
           </React.Fragment>
