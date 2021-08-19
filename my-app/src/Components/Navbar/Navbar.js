@@ -69,7 +69,7 @@ class  Navbar extends Component{
          <div className='d-flex'>
          <div className="navbar-toggler mx-2">
               <select value={uzLang?"UZ":enLang?"EN":"RU"} className="form-select form-select-sm"
-               aria-label=".form-select-sm example" 
+               aria-label=".form-select-sm example"
               onChange={this.handleChange}>
                     <option value="UZ" name='UZ'>Uzbekcha</option>
                     <option value="EN" name='EN'>English</option>
