@@ -24,10 +24,8 @@ class  Navbar extends Component{
   render(){
   const {uzLang,enLang} = this.props;
   return (
-    
     <>
       <header>
-
         <div className="container">
 
           <div className="row py-2 justify-content-between">
