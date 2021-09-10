@@ -36,7 +36,7 @@ class App extends React.Component {
           <Navbar />
           <Switch>
             <Route exact path="/" render={() => <Section />} />
-            <Route path="/Maqolalar" render={() => <Maqolalar />} />
+            <Route path="/Maqolalar" render={() => <Maqolalar/>} />
             <Route path="/Kitoblar" render={() => <Kitoblar />} />
             <Route path="/taqdimotlar" render={() => <Taqdimotlar/>} />
             <Route path="/loyihalar" render={() => <Loyihalar/>} />

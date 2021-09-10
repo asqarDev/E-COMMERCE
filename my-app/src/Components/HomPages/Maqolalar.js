@@ -92,7 +92,7 @@ class Maqolalar extends Component {
         <div className="container">
           <div className="row my-5">
             <div className="col-lg-3">
-              <ProfilPages />
+            <ProfilPages />
             </div>
             <div className="col-lg-9">
               <p className="izoh">

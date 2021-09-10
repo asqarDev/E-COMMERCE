@@ -12,8 +12,9 @@ import {enLanguege} from '../../Redux/Actions/enLanguege';
   };
   getMalumot() {
     saveTuitor().then((res) => {
-        this.setState({
-          userdata: res.data,
+      console.log(res.data.avatar)
+      this.setState({
+        userdata: res.data,
         });
       })
       .catch((res) => {
@@ -25,18 +26,18 @@ import {enLanguege} from '../../Redux/Actions/enLanguege';
   }
   render() {
     const { userdata } = this.state;
-    const {uzLang, enLang} = this.props
+    const {uzLang, enLang} = this.props;
     return (
       <>
-        <div className="card mycard mb-4" data-aos="zoom-in">
-          <div className="card-header">
+        <div className="card mycard mb-4">
+        <div className="card-header">
            
-            <img
-              src={`${host1}`+userdata.avatar}
-              className="card-img-top w-100"
-              alt="Profile images"
-            />
-          </div>
+           <img
+             src={`${host1}`+userdata.avatar}
+             className="card-img-top w-100"
+             alt="Profile images"
+           />
+         </div>
           <div className="card-body">
             <button className="btn mybtn w-100">
               <i className="fas fa-address-card mx-2"></i>{uzLang?"Profil":enLang?"Profile":"Профил"}
@@ -53,5 +54,4 @@ const mapStateToProps = (state) => {
     enLang: state.changeLang.enLang,
   };
 };
-
 export default connect(mapStateToProps, {uzLanguege,  ruLanguege, enLanguege })(ProfilPages);

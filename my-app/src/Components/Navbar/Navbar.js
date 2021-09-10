@@ -6,6 +6,8 @@ import { uzLanguege } from "../../Redux/Actions/uzLanguege";
 import { enLanguege } from "../../Redux/Actions/enLanguege";
 import { ruLanguege } from "../../Redux/Actions/ruLanguege";
 import { connect } from "react-redux";
+import { host } from "../Server/host";
+
 
 class  Navbar extends Component{
    handleChange = (value) => {
@@ -27,7 +29,6 @@ class  Navbar extends Component{
     <>
       <header>
         <div className="container">
-
           <div className="row py-2 justify-content-between">
             <div className="col-lg-5 col-md-6 col-sm-6">
               <a href="http://staff.tiiame.uz/" className="linkLogo">
@@ -43,7 +44,7 @@ class  Navbar extends Component{
             </div>
             <div className="col-lg-6 col-md-6 col-sm-6 d-flex justify-content-end align-items-center">
               <div>
-                <a href="https://morning-peak-42064.herokuapp.com/admin/">
+                <a href={`${host}/admin`}>
                   <i className="fas fa-user "></i> {uzLang?"Kirish":enLang?"Login":"Войти"}
                 </a>
               </div>

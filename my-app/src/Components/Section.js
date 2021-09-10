@@ -97,7 +97,7 @@ class Section extends Component {
                       </div>
                       <div className="mx-3">
                         <a
-                          href="mailto:a.mustafaqulov@tiiame.uz"
+                          href={"mailto:"+`${profiledata.email}`}
                           className="gmail"
                         >
                           {profiledata.email}
