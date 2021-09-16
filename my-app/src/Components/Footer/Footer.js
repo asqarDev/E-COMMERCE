@@ -10,7 +10,8 @@ class Footer extends Component {
   state={
     maps:[],
     number:[],
-    number2:[]
+    number2:[],
+    numbers:[]
   }
   getFooter=()=>{
     saveMaps(this.props.uzLang,this.props.enLang).then(res=>(
@@ -28,8 +29,9 @@ class Footer extends Component {
     saveNumber().then(res=>(
 
       this.setState({
-        number: res.data[0],
-        number2: res.data[1]
+          numbers: res.data,
+          number: res.data[0],
+          number2: res.data[1]
       })
     )).catch(res=>(
       console.log(res.data)
@@ -58,7 +60,7 @@ class Footer extends Component {
       });
   };
   render() {
-    const {maps,number,number2} = this.state;
+    const {maps,number,number2,numbers} = this.state;
     const {uzLang,enLang} = this.props;
     return (
       <footer>
@@ -68,11 +70,11 @@ class Footer extends Component {
               <h4 className="text-center post">{uzLang?"Xabar yuborish":enLang?"Get In Touch with Me":"Сообщения"}</h4>
               <Form onSubmit={(e) => this.addTodo(e)} >
                 <Form.Group controlId="text">
-                  <Form.Label>{uzLang?"Mavzular":enLang?"Subject":"Предметы"}</Form.Label>
+                  <Form.Label>{uzLang?"F.I.O":enLang?"F.I.O":"Ф.И.О"}</Form.Label>
                   <Form.Control
                     type="text"
                     name="subject"
-                    placeholder="Subject"
+                    placeholder="Isim Familya Ochistva"
                   />
                 </Form.Group>
                 <Form.Group controlId="emai">
@@ -80,12 +82,12 @@ class Footer extends Component {
                   <Form.Control type="email" name="email" placeholder="Email" />
                 </Form.Group>
                 <Form.Group controlId="phone">
-                  <Form.Label>{uzLang?"Tel: Raqam":enLang?"Phone":"Телефон"}</Form.Label>
-                  <Form.Control type="text" name="phone" placeholder="phone raqamni davlat kodi bilan kiriting:" />
+                  <Form.Label>{uzLang?"Tel: Raqam(Davlat kodi bilan kiritish talab qilinadi)":enLang?"Phone (Enter with country code required)":"Телефон (Введите код страны)"}</Form.Label>
+                  <Form.Control type="text" name="phone" placeholder="tel: +99899 999 99 99" />
                 </Form.Group>
                 <Form.Group controlId="message" className='mb-3'>
                   <Form.Label>{uzLang?"Izohlar":enLang?"Message":"Сообщение"}</Form.Label>
-                  <Form.Control as="textarea" name="message" rows={3} placeholder='Comments'/>
+                  <Form.Control as="textarea" name="message" rows={3} placeholder='Murojat matni...'/>
                 </Form.Group>
                 <Button variant="primary" type="submit" className='float-end'>
                   {uzLang?"Jo\'natish":enLang?"Save":"Спасти"}
@@ -118,7 +120,6 @@ class Footer extends Component {
                   </li>
                   <li>
                     <a href="http://sa.tiiame.uz/">
-                      
                       {uzLang?'"Barqaror qishloq xo‘jaligi" ilmiy-texnik jurnali':enLang?'Scientific and technical journal "Sustainable Agriculture"':'Научно-технический журнал "Устойчивое сельское хозяйство"'}
                     </a>
                     <i className="fas fa-chevron-right float-end"></i>
@@ -134,11 +135,13 @@ class Footer extends Component {
                   <i className="fas fa-map-marker-alt myicon"></i> 
                  <a href={maps.link} className='maps' target="_blank"> {maps.name}</a>
                 </p>
-                <p className="d-flex align-items-center my-3">
+                <p className="d-flex align-items-center">
                   <i className="fas fa-phone-alt myicon"></i>
-                  <p className="m-0">
-                   {number.phone} <br /> {number2.phone}
-                  </p>
+                  
+                  <div>
+                  {numbers.map((item,index)=>(<p className='m-0 ' key={index}> <p className="d-block ">{"  "+ item.phone+" " }</p></p>))}
+
+                  </div>
                 </p>
                 <p className="d-flex align-items-center">
                   <i className="fas fa-phone-alt myicon"></i>
@@ -161,10 +164,10 @@ class Footer extends Component {
               <div className="col-lg-4 py-3 col-md-6 footericons">
                 <p>
                   {" "}
-                  <a href="http://t.me/Mustafo_Ali_7">
+                  <a href="https://t.me/ilovetiiame">
                     <i className="fab fa-telegram "></i>
                   </a>
-                  <a href="http://facebook.com/alimardon.mustafoqulov.1/">
+                  <a href="https://www.facebook.com/tiiame.uz/">
                     <i className="fab fa-facebook-f "></i>
                   </a>
                 </p>

@@ -31,7 +31,7 @@ class Videolar extends Component {
         return item.file != null ? (
           <div className="mt-5" data-aos="zoom-in" data-aos-duration="3000">
             <video controls width="100%">
-              <source src={`${host1}` + item.file} type="video/mp4"></source>
+              <source src={item.file} type="video/mp4"></source>
             </video>
           </div>
         ) : (

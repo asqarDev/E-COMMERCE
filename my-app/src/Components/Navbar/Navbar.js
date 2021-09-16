@@ -44,7 +44,7 @@ class  Navbar extends Component{
             </div>
             <div className="col-lg-6 col-md-6 col-sm-6 d-flex justify-content-end align-items-center">
               <div>
-                <a href={`${host}/admin`}>
+                <a href={`${host}/admin/`}>
                   <i className="fas fa-user "></i> {uzLang?"Kirish":enLang?"Login":"Войти"}
                 </a>
               </div>

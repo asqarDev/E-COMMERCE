@@ -1,8 +1,8 @@
 import axios from "axios";
-export let host = "https://morning-peak-42064.herokuapp.com/uz";
-export let hosten = "https://morning-peak-42064.herokuapp.com/en";
-export let hostru = "https://morning-peak-42064.herokuapp.com/ru";
-export let host1='https://morning-peak-42064.herokuapp.com';
+export let host = "http://admin.credence.uz/uz";
+export let hosten = "http://admin.credence.uz/en";
+export let hostru = "http://admin.credence.uz/ru";
+export let host1='http://admin.credence.uz';
 
 export let HttpRequest=(config)=>{
     return axios({

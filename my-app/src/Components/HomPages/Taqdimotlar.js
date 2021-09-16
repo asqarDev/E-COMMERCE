@@ -35,7 +35,7 @@ class Taqdimotlar extends Component {
             <tr className="tables">
               <td>{item.count}</td>
               <td>
-                <a download href={uz?`${host}/books/`+item.slug+"/download":en?`${hosten}/books/`+item.slug+"/download":`${hostru}/books/`+"/"+item.slug+"/download"}>
+                <a download href={uz?`${host}/presentations​/`+item.slug+"/download":en?`${hosten}/presentations​/`+item.slug+"/download":`${hostru}/presentations​/`+item.slug+"/download"}>
                   {item.name}
                   <span className='badge badge-primary mydownload'>download</span>
                 </a>

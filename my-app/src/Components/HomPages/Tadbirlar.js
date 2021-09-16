@@ -36,7 +36,7 @@ class Tadbirlar extends Component {
             <tr className="tables">
               <td>{item.count}</td>
               <td>
-                <a download href={uz?`${host}/books/`+item.slug+"/download":en?`${hosten}/books/`+item.slug+"/download":`${hostru}/books/`+"/"+item.slug+"/download"}>
+                <a download href={uz?`${host}/events​/`+item.slug+"/download":en?`${hosten}/events​/`+item.slug+"/download":`${hostru}/events​/`+"/"+item.slug+"/download"}>
                   {item.name}
                   <span className='badge badge-primary mydownload'>download</span>
                 </a>
