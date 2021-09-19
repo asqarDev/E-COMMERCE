@@ -3,9 +3,9 @@ import { connect } from "react-redux";
 import Typed from "react-typed";
 import { saveTuitor } from "../Server/config/admin/tuitor";
 import "./Asisent.css";
-import {uzLanguege} from '../../Redux/Actions/uzLanguege'
-import {enLanguege} from '../../Redux/Actions/enLanguege'
-import {ruLanguege} from '../../Redux/Actions/ruLanguege'
+import {uzLanguege} from '../../Redux/Actions/uzLanguege';
+import {enLanguege} from '../../Redux/Actions/enLanguege';
+import {ruLanguege} from '../../Redux/Actions/ruLanguege';
 class AsisentPages extends Component {
   name=['Mustafoqulov Alimardon Mamatovich']
   nameen=['Мустафакулов Алимардон Маматович']
