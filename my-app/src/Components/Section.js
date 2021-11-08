@@ -81,8 +81,8 @@ class Section extends Component {
                         <i className="fas fa-signal"></i>{" "}
                         <a
                           className="index" target='_blank'
-                          href="https://www.scopus.com/results/authorNamesList.uri?sort=count-f&src=al&sid=2435879e53408658af9711af9850fb43&sot=al&sdt=al&sl=42&s=AUTHLASTNAME%28Shoyusupov%29+AND+AUTHFIRST%28Sh%29&st1=Shoyusupov&st2=Sh&orcidId=&selectionPageSearch=anl&reselectAuthor=false&activeFlag=true&showDocument=false&resultsPerPage=20&offset=1&jtp=false&currentPage=1&previousSelectionCount=0&tooManySelections=false&previousResultCount=0&authSubject=LFSC&authSubject=HLSC&authSubject=PHSC&authSubject=SOSC&exactAuthorSearch=false&showFullList=false&authorPreferredName=&origin=searchauthorfreelookup&affiliationId=&txGid=fe6538ae388d86b2fec354cc157a60b2"
-                        >
+                            href='https://www.scopus.com/results/authorNamesList.uri?sort=count-f&src=al&sid=a50f4d9026f2fb71a03d15516f474f09&sot=al&sdt=al&sl=39&s=AUTHLASTNAME%28Adilov%29+AND+AUTHFIRST%28Y.T%29&st1=Adilov&st2=Y.T&orcidId=&selectionPageSearch=anl&reselectAuthor=false&activeFlag=true&showDocument=false&resultsPerPage=20&offset=1&jtp=false&currentPage=1&previousSelectionCount=0&tooManySelections=false&previousResultCount=0&authSubject=LFSC&authSubject=HLSC&authSubject=PHSC&authSubject=SOSC&exactAuthorSearch=false&showFullList=false&authorPreferredName=&origin=searchauthorfreelookup&affiliationId=&txGid=18ffb7e7a0dd20ea94db91a50d48ca6b'
+                          >
                           {uzLang?"h-Indeksi":enLang?"Citations":"h-показатель"}
                         </a>
                       </p>

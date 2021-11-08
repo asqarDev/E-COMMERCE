@@ -7,8 +7,8 @@ import {uzLanguege} from '../../Redux/Actions/uzLanguege';
 import {enLanguege} from '../../Redux/Actions/enLanguege';
 import {ruLanguege} from '../../Redux/Actions/ruLanguege';
 class AsisentPages extends Component {
-  name=['Mustafoqulov Alimardon Mamatovich']
-  nameen=['Мустафакулов Алимардон Маматович']
+  name=['Adilov Yalkin Tuchievich']
+  nameen=['Адилов Ялкин Тучиевич']
   state = {
     userdata: [],
     profiledata: [],
